@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BaseAdvertiseDAO">
+	<resultMap id="result" type="com.maiya.shopcloud.goods.dao.advertise.AdvertiseDO">
+		<id property="id" column="id" />
+		<result property="code" column="code" />
+		<result property="subject" column="subject" />
+		<result property="content" column="content" />
+		<result property="picId" column="pic_id" />
+		<result property="pic" column="pic" />
+		<result property="level" column="level" />
+		<result property="placeId" column="place_id" />
+		<result property="place" column="place" />
+		<result property="type" column="type" />
+		<result property="creatorId" column="creator_id" />
+		<result property="creatorName" column="creator_name" />
+		<result property="createTime" column="create_time" />
+		<result property="modifierId" column="modifier_id" />
+		<result property="modifierName" column="modifier_name" />
+		<result property="modifyTime" column="modify_time" />
+		<result property="state" column="state" />
+		<result property="url" column="url" />
+		<result property="isGoodTypeId" column="is_good_type_id" />
+		<result property="areaId" column="area_id" />
+		<result property="areaName" column="area_name" />
+	</resultMap>
+	
+	<sql id="insert_columns">
+            <if test="code != null">, code</if>
+            <if test="subject != null">, subject</if>
+            <if test="content != null">, content</if>
+            <if test="picId != null">, pic_id</if>
+            <if test="pic != null">, pic</if>
+            <if test="level != null">, level</if>
+            <if test="placeId != null">, place_id</if>
+            <if test="place != null">, place</if>
+            <if test="type != null">, type</if>
+            <if test="creatorId != null">, creator_id</if>
+            <if test="creatorName != null">, creator_name</if>
+            <if test="createTime != null">, create_time</if>
+            <if test="modifierId != null">, modifier_id</if>
+            <if test="modifierName != null">, modifier_name</if>
+            <if test="modifyTime != null">, modify_time</if>
+            <if test="state != null">, state</if>
+            <if test="url != null">, url</if>
+            <if test="isGoodTypeId != null">, is_good_type_id</if>
+            <if test="areaId != null">, area_id</if>
+            <if test="areaName != null">, area_name</if>
+	</sql>
+	
+	<sql id="insert_all_columns">
+			code
+            ,subject
+            ,content
+            ,pic_id
+            ,pic
+            ,level
+            ,place_id
+            ,place
+            ,type
+            ,creator_id
+            ,creator_name
+            ,create_time
+            ,modifier_id
+            ,modifier_name
+            ,modify_time
+            ,state
+            ,url
+            ,is_good_type_id
+            ,area_id
+            ,area_name
+	</sql>
+
+	<sql id="insert_values">
+          <if test="code != null">, #{code}</if>
+          <if test="subject != null">, #{subject}</if>
+          <if test="content != null">, #{content}</if>
+          <if test="picId != null">, #{picId}</if>
+          <if test="pic != null">, #{pic}</if>
+          <if test="level != null">, #{level}</if>
+          <if test="placeId != null">, #{placeId}</if>
+          <if test="place != null">, #{place}</if>
+          <if test="type != null">, #{type}</if>
+          <if test="creatorId != null">, #{creatorId}</if>
+          <if test="creatorName != null">, #{creatorName}</if>
+          <if test="createTime != null">, #{createTime}</if>
+          <if test="modifierId != null">, #{modifierId}</if>
+          <if test="modifierName != null">, #{modifierName}</if>
+          <if test="modifyTime != null">, #{modifyTime}</if>
+          <if test="state != null">, #{state}</if>
+          <if test="url != null">, #{url}</if>
+          <if test="isGoodTypeId != null">, #{isGoodTypeId}</if>
+          <if test="areaId != null">, #{areaId}</if>
+          <if test="areaName != null">, #{areaName}</if>
+	</sql>
+
+    <sql id="batch_insert_values">
+            #{item.code}
+            ,#{item.subject}
+            ,#{item.content}
+            ,#{item.picId}
+            ,#{item.pic}
+            ,#{item.level}
+            ,#{item.placeId}
+            ,#{item.place}
+            ,#{item.type}
+            ,#{item.creatorId}
+            ,#{item.creatorName}
+            ,#{item.createTime}
+            ,#{item.modifierId}
+            ,#{item.modifierName}
+            ,#{item.modifyTime}
+            ,#{item.state}
+            ,#{item.url}
+            ,#{item.isGoodTypeId}
+            ,#{item.areaId}
+            ,#{item.areaName}
+    </sql>
+    
+    <sql id="insert_all_values">
+            #{code}
+            ,#{subject}
+            ,#{content}
+            ,#{picId}
+            ,#{pic}
+            ,#{level}
+            ,#{placeId}
+            ,#{place}
+            ,#{type}
+            ,#{creatorId}
+            ,#{creatorName}
+            ,#{createTime}
+            ,#{modifierId}
+            ,#{modifierName}
+            ,#{modifyTime}
+            ,#{state}
+            ,#{url}
+            ,#{isGoodTypeId}
+            ,#{areaId}
+            ,#{areaName}
+    </sql>
+	
+	<insert id="insertHasId" parameterType="com.maiya.shopcloud.goods.dao.advertise.AdvertiseDO" useGeneratedKeys="false">
+		insert into advertise(
+			id,
+			<include refid="insert_columns" />
+		)values(
+			#{id},
+			<include refid="insert_values" />
+		)
+	</insert>
+	
+	<insert id="batchInsertHasId"  parameterType="java.util.List" useGeneratedKeys="false">
+		insert into advertise(
+			id,
+			<include refid="insert_all_columns" />
+		)values
+		<foreach collection="list" item="item" index="index" separator=",">
+		(
+		    #{item.id},
+            <include refid="batch_insert_values" />
+		)
+		</foreach>
+	</insert>
+
+	<insert id="insert" parameterType="com.maiya.shopcloud.goods.dao.advertise.AdvertiseDO"  useGeneratedKeys="true" keyProperty="id">
+		insert into advertise(
+			<include refid="insert_all_columns" />
+		)values(
+			<include refid="insert_all_values" />
+		)
+	</insert>
+
+	<insert id="batchInsert" parameterType="java.util.List" useGeneratedKeys="true">
+		insert into advertise(
+			<include refid="insert_all_columns" />
+		)values
+		<foreach collection="list" item="item" index="index" separator=",">
+		(
+            <include refid="batch_insert_values" />
+		)
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.maiya.shopcloud.goods.dao.advertise.AdvertiseDO">
+        update advertise
+        <set>
+            <if test="code != null"> code=#{code}, </if>
+            <if test="subject != null"> subject=#{subject}, </if>
+            <if test="content != null"> content=#{content}, </if>
+            <if test="picId != null"> pic_id=#{picId}, </if>
+            <if test="pic != null"> pic=#{pic}, </if>
+            <if test="level != null"> level=#{level}, </if>
+            <if test="placeId != null"> place_id=#{placeId}, </if>
+            <if test="place != null"> place=#{place}, </if>
+            <if test="type != null"> type=#{type}, </if>
+            <if test="creatorId != null"> creator_id=#{creatorId}, </if>
+            <if test="creatorName != null"> creator_name=#{creatorName}, </if>
+            <if test="createTime != null"> create_time=#{createTime}, </if>
+            <if test="modifierId != null"> modifier_id=#{modifierId}, </if>
+            <if test="modifierName != null"> modifier_name=#{modifierName}, </if>
+            <if test="modifyTime != null"> modify_time=#{modifyTime}, </if>
+            <if test="state != null"> state=#{state}, </if>
+            <if test="url != null"> url=#{url}, </if>
+            <if test="isGoodTypeId != null"> is_good_type_id=#{isGoodTypeId}, </if>
+            <if test="areaId != null"> area_id=#{areaId}, </if>
+            <if test="areaName != null"> area_name=#{areaName}, </if>
+        </set>
+		where id=#{id}
+	</update>
+
+	<update id="updateByField" parameterType="java.util.HashMap">
+        update advertise
+        <set>
+            <if test="template.code != null"> code=#{template.code}, </if>
+            <if test="template.subject != null"> subject=#{template.subject}, </if>
+            <if test="template.content != null"> content=#{template.content}, </if>
+            <if test="template.picId != null"> pic_id=#{template.picId}, </if>
+            <if test="template.pic != null"> pic=#{template.pic}, </if>
+            <if test="template.level != null"> level=#{template.level}, </if>
+            <if test="template.placeId != null"> place_id=#{template.placeId}, </if>
+            <if test="template.place != null"> place=#{template.place}, </if>
+            <if test="template.type != null"> type=#{template.type}, </if>
+            <if test="template.creatorId != null"> creator_id=#{template.creatorId}, </if>
+            <if test="template.creatorName != null"> creator_name=#{template.creatorName}, </if>
+            <if test="template.createTime != null"> create_time=#{template.createTime}, </if>
+            <if test="template.modifierId != null"> modifier_id=#{template.modifierId}, </if>
+            <if test="template.modifierName != null"> modifier_name=#{template.modifierName}, </if>
+            <if test="template.modifyTime != null"> modify_time=#{template.modifyTime}, </if>
+            <if test="template.state != null"> state=#{template.state}, </if>
+            <if test="template.url != null"> url=#{template.url}, </if>
+            <if test="template.isGoodTypeId != null"> is_good_type_id=#{template.isGoodTypeId}, </if>
+            <if test="template.areaId != null"> area_id=#{template.areaId}, </if>
+            <if test="template.areaName != null"> area_name=#{template.areaName}, </if>
+        </set>
+		<where>
+            <if test="condition.id != null"> and id=#{condition.id}</if>
+            <if test="condition.code != null"> and code=#{condition.code}</if>
+            <if test="condition.subject != null"> and subject=#{condition.subject}</if>
+            <if test="condition.content != null"> and content=#{condition.content}</if>
+            <if test="condition.picId != null"> and pic_id=#{condition.picId}</if>
+            <if test="condition.pic != null"> and pic=#{condition.pic}</if>
+            <if test="condition.level != null"> and level=#{condition.level}</if>
+            <if test="condition.placeId != null"> and place_id=#{condition.placeId}</if>
+            <if test="condition.place != null"> and place=#{condition.place}</if>
+            <if test="condition.type != null"> and type=#{condition.type}</if>
+            <if test="condition.creatorId != null"> and creator_id=#{condition.creatorId}</if>
+            <if test="condition.creatorName != null"> and creator_name=#{condition.creatorName}</if>
+            <if test="condition.createTime != null"> and create_time=#{condition.createTime}</if>
+            <if test="condition.modifierId != null"> and modifier_id=#{condition.modifierId}</if>
+            <if test="condition.modifierName != null"> and modifier_name=#{condition.modifierName}</if>
+            <if test="condition.modifyTime != null"> and modify_time=#{condition.modifyTime}</if>
+            <if test="condition.state != null"> and state=#{condition.state}</if>
+            <if test="condition.url != null"> and url=#{condition.url}</if>
+            <if test="condition.isGoodTypeId != null"> and is_good_type_id=#{condition.isGoodTypeId}</if>
+            <if test="condition.areaId != null"> and area_id=#{condition.areaId}</if>
+            <if test="condition.areaName != null"> and area_name=#{condition.areaName}</if>
+        </where>
+	</update>
+
+	<select id="select" parameterType="java.util.Map" resultMap="result">
+		<include refid="select_all_column" />
+		from advertise 
+		where id=#{id}
+		<if test="isLock"> for update </if>
+	</select>
+
+	<select id="selectListByIdList" parameterType="java.util.Map" resultMap="result">
+		<include refid="select_all_column" />
+		from advertise
+		<where>
+			<if test="idList != null">
+			id in
+			<foreach item="item" index="index" collection="idList" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+			</if>
+		</where>
+		<if test="isLock"> for update </if>
+	</select>
+
+	<select id="selectEOByEO" parameterType="java.util.Map" resultMap="result">
+		<include refid="select_all_column" />
+		from advertise
+		<include refid="where_all" />
+	</select>
+	
+	<sql id="select_all_column">
+		select ID
+            ,code
+            ,subject
+            ,content
+            ,pic_id
+            ,pic
+            ,level
+            ,place_id
+            ,place
+            ,type
+            ,creator_id
+            ,creator_name
+            ,create_time
+            ,modifier_id
+            ,modifier_name
+            ,modify_time
+            ,state
+            ,url
+            ,is_good_type_id
+            ,area_id
+            ,area_name
+	</sql>
+
+	<sql id="where_all">
+		<where>
+            <include refid="condition_all" />
+		</where>
+	</sql>
+
+    <sql id="condition_all">
+        <if test="condition.id != null and condition.id != ''"> and id=#{condition.id} </if>
+        <if test="condition.code != null and condition.code != ''"> and code=#{condition.code} </if>
+        <if test="condition.subject != null and condition.subject != ''"> and subject=#{condition.subject} </if>
+        <if test="condition.content != null and condition.content != ''"> and content=#{condition.content} </if>
+        <if test="condition.picId != null and condition.picId != ''"> and pic_id=#{condition.picId} </if>
+        <if test="condition.pic != null and condition.pic != ''"> and pic=#{condition.pic} </if>
+        <if test="condition.level != null"> and level=#{condition.level} </if>
+        <if test="condition.placeId != null and condition.placeId != ''"> and place_id=#{condition.placeId} </if>
+        <if test="condition.place != null and condition.place != ''"> and place=#{condition.place} </if>
+        <if test="condition.type != null and condition.type != ''"> and type=#{condition.type} </if>
+        <if test="condition.creatorId != null and condition.creatorId != ''"> and creator_id=#{condition.creatorId} </if>
+        <if test="condition.creatorName != null and condition.creatorName != ''"> and creator_name=#{condition.creatorName} </if>
+        <if test="condition.createTime != null"> and create_time=#{condition.createTime} </if>
+        <if test="condition.modifierId != null and condition.modifierId != ''"> and modifier_id=#{condition.modifierId} </if>
+        <if test="condition.modifierName != null and condition.modifierName != ''"> and modifier_name=#{condition.modifierName} </if>
+        <if test="condition.modifyTime != null"> and modify_time=#{condition.modifyTime} </if>
+        <if test="condition.state != null and condition.state != ''"> and state=#{condition.state} </if>
+        <if test="condition.url != null and condition.url != ''"> and url=#{condition.url} </if>
+        <if test="condition.isGoodTypeId != null and condition.isGoodTypeId != ''"> and is_good_type_id=#{condition.isGoodTypeId} </if>
+        <if test="condition.areaId != null and condition.areaId != ''"> and area_id=#{condition.areaId} </if>
+        <if test="condition.areaName != null and condition.areaName != ''"> and area_name=#{condition.areaName} </if>
+    </sql>
+
+	<delete id="delete" parameterType="com.maiya.shopcloud.goods.dao.advertise.AdvertiseDO">
+		delete from advertise
+		where id=#{id}
+	</delete>
+
+</mapper>

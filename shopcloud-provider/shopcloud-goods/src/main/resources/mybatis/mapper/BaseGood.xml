@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BaseGoodDAO">
+	<resultMap id="result" type="com.maiya.shopcloud.goods.dao.good.GoodDO">
+		<id property="id" column="id" />
+		<result property="code" column="code" />
+		<result property="name" column="name" />
+		<result property="goodTypeId" column="good_type_id" />
+		<result property="goodTypeName" column="good_type_name" />
+		<result property="goodKindId" column="good_kind_id" />
+		<result property="goodKindName" column="good_kind_name" />
+		<result property="brandId" column="brand_id" />
+		<result property="brandName" column="brand_name" />
+		<result property="supplierId" column="supplier_id" />
+		<result property="supplierName" column="supplier_name" />
+		<result property="unit" column="unit" />
+		<result property="purchasePrice" column="purchase_price" />
+		<result property="price" column="price" />
+		<result property="priceMarket" column="price_market" />
+		<result property="priceGroupBuy" column="price_group_buy" />
+		<result property="credits" column="credits" />
+		<result property="picId" column="pic_id" />
+		<result property="pic" column="pic" />
+		<result property="tag" column="tag" />
+		<result property="beginSaleTime" column="begin_sale_time" />
+		<result property="endSaleTime" column="end_sale_time" />
+		<result property="orderMultiple" column="order_multiple" />
+		<result property="totalSales" column="total_sales" />
+		<result property="dailyNetSales" column="daily_net_sales" />
+		<result property="purchaseNum" column="purchase_num" />
+		<result property="totalCostInventory" column="total_cost_inventory" />
+		<result property="averageCostInventory" column="average_cost_inventory" />
+		<result property="inventoryMin" column="inventory_min" />
+		<result property="inventoryMax" column="inventory_max" />
+		<result property="indexShow" column="index_show" />
+		<result property="barcode" column="barcode" />
+		<result property="creatorId" column="creator_id" />
+		<result property="creatorName" column="creator_name" />
+		<result property="createTime" column="create_time" />
+		<result property="modifierId" column="modifier_id" />
+		<result property="modifierName" column="modifier_name" />
+		<result property="modifyTime" column="modify_time" />
+		<result property="state" column="state" />
+		<result property="isInventory" column="is_inventory" />
+		<result property="initialnum" column="initialNum" />
+		<result property="taxRate" column="tax_rate" />
+		<result property="taxPrice" column="tax_price" />
+		<result property="property" column="property" />
+		<result property="remark" column="remark" />
+		<result property="areaId" column="area_id" />
+		<result property="clickNumber" column="click_number" />
+		<result property="deliveryId" column="delivery_id" />
+		<result property="paymentId" column="payment_id" />
+		<result property="commentCount" column="comment_count" />
+		<result property="sort" column="sort" />
+		<result property="groupNumber" column="group_number" />
+		<result property="beginTime" column="begin_time" />
+		<result property="version" column="version" />
+		<result property="endTime" column="end_time" />
+		<result property="isNext" column="is_next" />
+		<result property="returnRate" column="return_rate" />
+		<result property="returnPrice" column="return_price" />
+		<result property="activitNumber" column="activit_number" />
+		<result property="isView" column="is_view" />
+		<result property="totalNum" column="total_num" />
+	</resultMap>
+	
+	<sql id="insert_columns">
+            VERSION
+            <if test="code != null">, code</if>
+            <if test="name != null">, name</if>
+            <if test="goodTypeId != null">, good_type_id</if>
+            <if test="goodTypeName != null">, good_type_name</if>
+            <if test="goodKindId != null">, good_kind_id</if>
+            <if test="goodKindName != null">, good_kind_name</if>
+            <if test="brandId != null">, brand_id</if>
+            <if test="brandName != null">, brand_name</if>
+            <if test="supplierId != null">, supplier_id</if>
+            <if test="supplierName != null">, supplier_name</if>
+            <if test="unit != null">, unit</if>
+            <if test="purchasePrice != null">, purchase_price</if>
+            <if test="price != null">, price</if>
+            <if test="priceMarket != null">, price_market</if>
+            <if test="priceGroupBuy != null">, price_group_buy</if>
+            <if test="credits != null">, credits</if>
+            <if test="picId != null">, pic_id</if>
+            <if test="pic != null">, pic</if>
+            <if test="tag != null">, tag</if>
+            <if test="beginSaleTime != null">, begin_sale_time</if>
+            <if test="endSaleTime != null">, end_sale_time</if>
+            <if test="orderMultiple != null">, order_multiple</if>
+            <if test="totalSales != null">, total_sales</if>
+            <if test="dailyNetSales != null">, daily_net_sales</if>
+            <if test="purchaseNum != null">, purchase_num</if>
+            <if test="totalCostInventory != null">, total_cost_inventory</if>
+            <if test="averageCostInventory != null">, average_cost_inventory</if>
+            <if test="inventoryMin != null">, inventory_min</if>
+            <if test="inventoryMax != null">, inventory_max</if>
+            <if test="indexShow != null">, index_show</if>
+            <if test="barcode != null">, barcode</if>
+            <if test="creatorId != null">, creator_id</if>
+            <if test="creatorName != null">, creator_name</if>
+            <if test="createTime != null">, create_time</if>
+            <if test="modifierId != null">, modifier_id</if>
+            <if test="modifierName != null">, modifier_name</if>
+            <if test="modifyTime != null">, modify_time</if>
+            <if test="state != null">, state</if>
+            <if test="isInventory != null">, is_inventory</if>
+            <if test="initialnum != null">, initialNum</if>
+            <if test="taxRate != null">, tax_rate</if>
+            <if test="taxPrice != null">, tax_price</if>
+            <if test="property != null">, property</if>
+            <if test="remark != null">, remark</if>
+            <if test="areaId != null">, area_id</if>
+            <if test="clickNumber != null">, click_number</if>
+            <if test="deliveryId != null">, delivery_id</if>
+            <if test="paymentId != null">, payment_id</if>
+            <if test="commentCount != null">, comment_count</if>
+            <if test="sort != null">, sort</if>
+            <if test="groupNumber != null">, group_number</if>
+            <if test="beginTime != null">, begin_time</if>
+            <if test="endTime != null">, end_time</if>
+            <if test="isNext != null">, is_next</if>
+            <if test="returnRate != null">, return_rate</if>
+            <if test="returnPrice != null">, return_price</if>
+            <if test="activitNumber != null">, activit_number</if>
+            <if test="isView != null">, is_view</if>
+            <if test="totalNum != null">, total_num</if>
+	</sql>
+	
+	<sql id="insert_all_columns">
+            VERSION
+            ,code
+            ,name
+            ,good_type_id
+            ,good_type_name
+            ,good_kind_id
+            ,good_kind_name
+            ,brand_id
+            ,brand_name
+            ,supplier_id
+            ,supplier_name
+            ,unit
+            ,purchase_price
+            ,price
+            ,price_market
+            ,price_group_buy
+            ,credits
+            ,pic_id
+            ,pic
+            ,tag
+            ,begin_sale_time
+            ,end_sale_time
+            ,order_multiple
+            ,total_sales
+            ,daily_net_sales
+            ,purchase_num
+            ,total_cost_inventory
+            ,average_cost_inventory
+            ,inventory_min
+            ,inventory_max
+            ,index_show
+            ,barcode
+            ,creator_id
+            ,creator_name
+            ,create_time
+            ,modifier_id
+            ,modifier_name
+            ,modify_time
+            ,state
+            ,is_inventory
+            ,initialNum
+            ,tax_rate
+            ,tax_price
+            ,property
+            ,remark
+            ,area_id
+            ,click_number
+            ,delivery_id
+            ,payment_id
+            ,comment_count
+            ,sort
+            ,group_number
+            ,begin_time
+            ,end_time
+            ,is_next
+            ,return_rate
+            ,return_price
+            ,activit_number
+            ,is_view
+            ,total_num
+	</sql>
+
+	<sql id="insert_values">
+           1
+          <if test="code != null">, #{code}</if>
+          <if test="name != null">, #{name}</if>
+          <if test="goodTypeId != null">, #{goodTypeId}</if>
+          <if test="goodTypeName != null">, #{goodTypeName}</if>
+          <if test="goodKindId != null">, #{goodKindId}</if>
+          <if test="goodKindName != null">, #{goodKindName}</if>
+          <if test="brandId != null">, #{brandId}</if>
+          <if test="brandName != null">, #{brandName}</if>
+          <if test="supplierId != null">, #{supplierId}</if>
+          <if test="supplierName != null">, #{supplierName}</if>
+          <if test="unit != null">, #{unit}</if>
+          <if test="purchasePrice != null">, #{purchasePrice}</if>
+          <if test="price != null">, #{price}</if>
+          <if test="priceMarket != null">, #{priceMarket}</if>
+          <if test="priceGroupBuy != null">, #{priceGroupBuy}</if>
+          <if test="credits != null">, #{credits}</if>
+          <if test="picId != null">, #{picId}</if>
+          <if test="pic != null">, #{pic}</if>
+          <if test="tag != null">, #{tag}</if>
+          <if test="beginSaleTime != null">, #{beginSaleTime}</if>
+          <if test="endSaleTime != null">, #{endSaleTime}</if>
+          <if test="orderMultiple != null">, #{orderMultiple}</if>
+          <if test="totalSales != null">, #{totalSales}</if>
+          <if test="dailyNetSales != null">, #{dailyNetSales}</if>
+          <if test="purchaseNum != null">, #{purchaseNum}</if>
+          <if test="totalCostInventory != null">, #{totalCostInventory}</if>
+          <if test="averageCostInventory != null">, #{averageCostInventory}</if>
+          <if test="inventoryMin != null">, #{inventoryMin}</if>
+          <if test="inventoryMax != null">, #{inventoryMax}</if>
+          <if test="indexShow != null">, #{indexShow}</if>
+          <if test="barcode != null">, #{barcode}</if>
+          <if test="creatorId != null">, #{creatorId}</if>
+          <if test="creatorName != null">, #{creatorName}</if>
+          <if test="createTime != null">, #{createTime}</if>
+          <if test="modifierId != null">, #{modifierId}</if>
+          <if test="modifierName != null">, #{modifierName}</if>
+          <if test="modifyTime != null">, #{modifyTime}</if>
+          <if test="state != null">, #{state}</if>
+          <if test="isInventory != null">, #{isInventory}</if>
+          <if test="initialnum != null">, #{initialnum}</if>
+          <if test="taxRate != null">, #{taxRate}</if>
+          <if test="taxPrice != null">, #{taxPrice}</if>
+          <if test="property != null">, #{property}</if>
+          <if test="remark != null">, #{remark}</if>
+          <if test="areaId != null">, #{areaId}</if>
+          <if test="clickNumber != null">, #{clickNumber}</if>
+          <if test="deliveryId != null">, #{deliveryId}</if>
+          <if test="paymentId != null">, #{paymentId}</if>
+          <if test="commentCount != null">, #{commentCount}</if>
+          <if test="sort != null">, #{sort}</if>
+          <if test="groupNumber != null">, #{groupNumber}</if>
+          <if test="beginTime != null">, #{beginTime}</if>
+          <if test="endTime != null">, #{endTime}</if>
+          <if test="isNext != null">, #{isNext}</if>
+          <if test="returnRate != null">, #{returnRate}</if>
+          <if test="returnPrice != null">, #{returnPrice}</if>
+          <if test="activitNumber != null">, #{activitNumber}</if>
+          <if test="isView != null">, #{isView}</if>
+          <if test="totalNum != null">, #{totalNum}</if>
+	</sql>
+
+    <sql id="batch_insert_values">
+            1
+            ,#{item.code}
+            ,#{item.name}
+            ,#{item.goodTypeId}
+            ,#{item.goodTypeName}
+            ,#{item.goodKindId}
+            ,#{item.goodKindName}
+            ,#{item.brandId}
+            ,#{item.brandName}
+            ,#{item.supplierId}
+            ,#{item.supplierName}
+            ,#{item.unit}
+            ,#{item.purchasePrice}
+            ,#{item.price}
+            ,#{item.priceMarket}
+            ,#{item.priceGroupBuy}
+            ,#{item.credits}
+            ,#{item.picId}
+            ,#{item.pic}
+            ,#{item.tag}
+            ,#{item.beginSaleTime}
+            ,#{item.endSaleTime}
+            ,#{item.orderMultiple}
+            ,#{item.totalSales}
+            ,#{item.dailyNetSales}
+            ,#{item.purchaseNum}
+            ,#{item.totalCostInventory}
+            ,#{item.averageCostInventory}
+            ,#{item.inventoryMin}
+            ,#{item.inventoryMax}
+            ,#{item.indexShow}
+            ,#{item.barcode}
+            ,#{item.creatorId}
+            ,#{item.creatorName}
+            ,#{item.createTime}
+            ,#{item.modifierId}
+            ,#{item.modifierName}
+            ,#{item.modifyTime}
+            ,#{item.state}
+            ,#{item.isInventory}
+            ,#{item.initialnum}
+            ,#{item.taxRate}
+            ,#{item.taxPrice}
+            ,#{item.property}
+            ,#{item.remark}
+            ,#{item.areaId}
+            ,#{item.clickNumber}
+            ,#{item.deliveryId}
+            ,#{item.paymentId}
+            ,#{item.commentCount}
+            ,#{item.sort}
+            ,#{item.groupNumber}
+            ,#{item.beginTime}
+            ,#{item.endTime}
+            ,#{item.isNext}
+            ,#{item.returnRate}
+            ,#{item.returnPrice}
+            ,#{item.activitNumber}
+            ,#{item.isView}
+            ,#{item.totalNum}
+    </sql>
+    
+    <sql id="insert_all_values">
+            1
+            ,#{code}
+            ,#{name}
+            ,#{goodTypeId}
+            ,#{goodTypeName}
+            ,#{goodKindId}
+            ,#{goodKindName}
+            ,#{brandId}
+            ,#{brandName}
+            ,#{supplierId}
+            ,#{supplierName}
+            ,#{unit}
+            ,#{purchasePrice}
+            ,#{price}
+            ,#{priceMarket}
+            ,#{priceGroupBuy}
+            ,#{credits}
+            ,#{picId}
+            ,#{pic}
+            ,#{tag}
+            ,#{beginSaleTime}
+            ,#{endSaleTime}
+            ,#{orderMultiple}
+            ,#{totalSales}
+            ,#{dailyNetSales}
+            ,#{purchaseNum}
+            ,#{totalCostInventory}
+            ,#{averageCostInventory}
+            ,#{inventoryMin}
+            ,#{inventoryMax}
+            ,#{indexShow}
+            ,#{barcode}
+            ,#{creatorId}
+            ,#{creatorName}
+            ,#{createTime}
+            ,#{modifierId}
+            ,#{modifierName}
+            ,#{modifyTime}
+            ,#{state}
+            ,#{isInventory}
+            ,#{initialnum}
+            ,#{taxRate}
+            ,#{taxPrice}
+            ,#{property}
+            ,#{remark}
+            ,#{areaId}
+            ,#{clickNumber}
+            ,#{deliveryId}
+            ,#{paymentId}
+            ,#{commentCount}
+            ,#{sort}
+            ,#{groupNumber}
+            ,#{beginTime}
+            ,#{endTime}
+            ,#{isNext}
+            ,#{returnRate}
+            ,#{returnPrice}
+            ,#{activitNumber}
+            ,#{isView}
+            ,#{totalNum}
+    </sql>
+	
+	<insert id="insertHasId" parameterType="com.maiya.shopcloud.goods.dao.good.GoodDO" useGeneratedKeys="false">
+		insert into good(
+			id,
+			<include refid="insert_columns" />
+		)values(
+			#{id},
+			<include refid="insert_values" />
+		)
+	</insert>
+	
+	<insert id="batchInsertHasId"  parameterType="java.util.List" useGeneratedKeys="false">
+		insert into good(
+			id,
+			<include refid="insert_all_columns" />
+		)values
+		<foreach collection="list" item="item" index="index" separator=",">
+		(
+		    #{item.id},
+            <include refid="batch_insert_values" />
+		)
+		</foreach>
+	</insert>
+
+	<insert id="insert" parameterType="com.maiya.shopcloud.goods.dao.good.GoodDO"  useGeneratedKeys="true" keyProperty="id">
+		insert into good(
+			<include refid="insert_all_columns" />
+		)values(
+			<include refid="insert_all_values" />
+		)
+	</insert>
+
+	<insert id="batchInsert" parameterType="java.util.List" useGeneratedKeys="true">
+		insert into good(
+			<include refid="insert_all_columns" />
+		)values
+		<foreach collection="list" item="item" index="index" separator=",">
+		(
+            <include refid="batch_insert_values" />
+		)
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.maiya.shopcloud.goods.dao.good.GoodDO">
+        update good
+        <set>
+           <if test="true"> VERSION=VERSION+1, </if>
+            <if test="code != null"> code=#{code}, </if>
+            <if test="name != null"> name=#{name}, </if>
+            <if test="goodTypeId != null"> good_type_id=#{goodTypeId}, </if>
+            <if test="goodTypeName != null"> good_type_name=#{goodTypeName}, </if>
+            <if test="goodKindId != null"> good_kind_id=#{goodKindId}, </if>
+            <if test="goodKindName != null"> good_kind_name=#{goodKindName}, </if>
+            <if test="brandId != null"> brand_id=#{brandId}, </if>
+            <if test="brandName != null"> brand_name=#{brandName}, </if>
+            <if test="supplierId != null"> supplier_id=#{supplierId}, </if>
+            <if test="supplierName != null"> supplier_name=#{supplierName}, </if>
+            <if test="unit != null"> unit=#{unit}, </if>
+            <if test="purchasePrice != null"> purchase_price=#{purchasePrice}, </if>
+            <if test="price != null"> price=#{price}, </if>
+            <if test="priceMarket != null"> price_market=#{priceMarket}, </if>
+            <if test="priceGroupBuy != null"> price_group_buy=#{priceGroupBuy}, </if>
+            <if test="credits != null"> credits=#{credits}, </if>
+            <if test="picId != null"> pic_id=#{picId}, </if>
+            <if test="pic != null"> pic=#{pic}, </if>
+            <if test="tag != null"> tag=#{tag}, </if>
+            <if test="beginSaleTime != null"> begin_sale_time=#{beginSaleTime}, </if>
+            <if test="endSaleTime != null"> end_sale_time=#{endSaleTime}, </if>
+            <if test="orderMultiple != null"> order_multiple=#{orderMultiple}, </if>
+            <if test="totalSales != null"> total_sales=#{totalSales}, </if>
+            <if test="dailyNetSales != null"> daily_net_sales=#{dailyNetSales}, </if>
+            <if test="purchaseNum != null"> purchase_num=#{purchaseNum}, </if>
+            <if test="totalCostInventory != null"> total_cost_inventory=#{totalCostInventory}, </if>
+            <if test="averageCostInventory != null"> average_cost_inventory=#{averageCostInventory}, </if>
+            <if test="inventoryMin != null"> inventory_min=#{inventoryMin}, </if>
+            <if test="inventoryMax != null"> inventory_max=#{inventoryMax}, </if>
+            <if test="indexShow != null"> index_show=#{indexShow}, </if>
+            <if test="barcode != null"> barcode=#{barcode}, </if>
+            <if test="creatorId != null"> creator_id=#{creatorId}, </if>
+            <if test="creatorName != null"> creator_name=#{creatorName}, </if>
+            <if test="createTime != null"> create_time=#{createTime}, </if>
+            <if test="modifierId != null"> modifier_id=#{modifierId}, </if>
+            <if test="modifierName != null"> modifier_name=#{modifierName}, </if>
+            <if test="modifyTime != null"> modify_time=#{modifyTime}, </if>
+            <if test="state != null"> state=#{state}, </if>
+            <if test="isInventory != null"> is_inventory=#{isInventory}, </if>
+            <if test="initialnum != null"> initialNum=#{initialnum}, </if>
+            <if test="taxRate != null"> tax_rate=#{taxRate}, </if>
+            <if test="taxPrice != null"> tax_price=#{taxPrice}, </if>
+            <if test="property != null"> property=#{property}, </if>
+            <if test="remark != null"> remark=#{remark}, </if>
+            <if test="areaId != null"> area_id=#{areaId}, </if>
+            <if test="clickNumber != null"> click_number=#{clickNumber}, </if>
+            <if test="deliveryId != null"> delivery_id=#{deliveryId}, </if>
+            <if test="paymentId != null"> payment_id=#{paymentId}, </if>
+            <if test="commentCount != null"> comment_count=#{commentCount}, </if>
+            <if test="sort != null"> sort=#{sort}, </if>
+            <if test="groupNumber != null"> group_number=#{groupNumber}, </if>
+            <if test="beginTime != null"> begin_time=#{beginTime}, </if>
+            <if test="endTime != null"> end_time=#{endTime}, </if>
+            <if test="isNext != null"> is_next=#{isNext}, </if>
+            <if test="returnRate != null"> return_rate=#{returnRate}, </if>
+            <if test="returnPrice != null"> return_price=#{returnPrice}, </if>
+            <if test="activitNumber != null"> activit_number=#{activitNumber}, </if>
+            <if test="isView != null"> is_view=#{isView}, </if>
+            <if test="totalNum != null"> total_num=#{totalNum}, </if>
+        </set>
+		where id=#{id}
+			and VERSION=#{version}
+	</update>
+
+	<update id="updateByField" parameterType="java.util.HashMap">
+        update good
+        <set>
+            <if test="template.code != null"> code=#{template.code}, </if>
+            <if test="template.name != null"> name=#{template.name}, </if>
+            <if test="template.goodTypeId != null"> good_type_id=#{template.goodTypeId}, </if>
+            <if test="template.goodTypeName != null"> good_type_name=#{template.goodTypeName}, </if>
+            <if test="template.goodKindId != null"> good_kind_id=#{template.goodKindId}, </if>
+            <if test="template.goodKindName != null"> good_kind_name=#{template.goodKindName}, </if>
+            <if test="template.brandId != null"> brand_id=#{template.brandId}, </if>
+            <if test="template.brandName != null"> brand_name=#{template.brandName}, </if>
+            <if test="template.supplierId != null"> supplier_id=#{template.supplierId}, </if>
+            <if test="template.supplierName != null"> supplier_name=#{template.supplierName}, </if>
+            <if test="template.unit != null"> unit=#{template.unit}, </if>
+            <if test="template.purchasePrice != null"> purchase_price=#{template.purchasePrice}, </if>
+            <if test="template.price != null"> price=#{template.price}, </if>
+            <if test="template.priceMarket != null"> price_market=#{template.priceMarket}, </if>
+            <if test="template.priceGroupBuy != null"> price_group_buy=#{template.priceGroupBuy}, </if>
+            <if test="template.credits != null"> credits=#{template.credits}, </if>
+            <if test="template.picId != null"> pic_id=#{template.picId}, </if>
+            <if test="template.pic != null"> pic=#{template.pic}, </if>
+            <if test="template.tag != null"> tag=#{template.tag}, </if>
+            <if test="template.beginSaleTime != null"> begin_sale_time=#{template.beginSaleTime}, </if>
+            <if test="template.endSaleTime != null"> end_sale_time=#{template.endSaleTime}, </if>
+            <if test="template.orderMultiple != null"> order_multiple=#{template.orderMultiple}, </if>
+            <if test="template.totalSales != null"> total_sales=#{template.totalSales}, </if>
+            <if test="template.dailyNetSales != null"> daily_net_sales=#{template.dailyNetSales}, </if>
+            <if test="template.purchaseNum != null"> purchase_num=#{template.purchaseNum}, </if>
+            <if test="template.totalCostInventory != null"> total_cost_inventory=#{template.totalCostInventory}, </if>
+            <if test="template.averageCostInventory != null"> average_cost_inventory=#{template.averageCostInventory}, </if>
+            <if test="template.inventoryMin != null"> inventory_min=#{template.inventoryMin}, </if>
+            <if test="template.inventoryMax != null"> inventory_max=#{template.inventoryMax}, </if>
+            <if test="template.indexShow != null"> index_show=#{template.indexShow}, </if>
+            <if test="template.barcode != null"> barcode=#{template.barcode}, </if>
+            <if test="template.creatorId != null"> creator_id=#{template.creatorId}, </if>
+            <if test="template.creatorName != null"> creator_name=#{template.creatorName}, </if>
+            <if test="template.createTime != null"> create_time=#{template.createTime}, </if>
+            <if test="template.modifierId != null"> modifier_id=#{template.modifierId}, </if>
+            <if test="template.modifierName != null"> modifier_name=#{template.modifierName}, </if>
+            <if test="template.modifyTime != null"> modify_time=#{template.modifyTime}, </if>
+            <if test="template.state != null"> state=#{template.state}, </if>
+            <if test="template.isInventory != null"> is_inventory=#{template.isInventory}, </if>
+            <if test="template.initialnum != null"> initialNum=#{template.initialnum}, </if>
+            <if test="template.taxRate != null"> tax_rate=#{template.taxRate}, </if>
+            <if test="template.taxPrice != null"> tax_price=#{template.taxPrice}, </if>
+            <if test="template.property != null"> property=#{template.property}, </if>
+            <if test="template.remark != null"> remark=#{template.remark}, </if>
+            <if test="template.areaId != null"> area_id=#{template.areaId}, </if>
+            <if test="template.clickNumber != null"> click_number=#{template.clickNumber}, </if>
+            <if test="template.deliveryId != null"> delivery_id=#{template.deliveryId}, </if>
+            <if test="template.paymentId != null"> payment_id=#{template.paymentId}, </if>
+            <if test="template.commentCount != null"> comment_count=#{template.commentCount}, </if>
+            <if test="template.sort != null"> sort=#{template.sort}, </if>
+            <if test="template.groupNumber != null"> group_number=#{template.groupNumber}, </if>
+            <if test="template.beginTime != null"> begin_time=#{template.beginTime}, </if>
+            <if test="template.endTime != null"> end_time=#{template.endTime}, </if>
+            <if test="template.isNext != null"> is_next=#{template.isNext}, </if>
+            <if test="template.returnRate != null"> return_rate=#{template.returnRate}, </if>
+            <if test="template.returnPrice != null"> return_price=#{template.returnPrice}, </if>
+            <if test="template.activitNumber != null"> activit_number=#{template.activitNumber}, </if>
+            <if test="template.isView != null"> is_view=#{template.isView}, </if>
+            <if test="template.totalNum != null"> total_num=#{template.totalNum}, </if>
+        </set>
+		<where>
+            <if test="condition.id != null"> and id=#{condition.id}</if>
+            <if test="condition.code != null"> and code=#{condition.code}</if>
+            <if test="condition.name != null"> and name=#{condition.name}</if>
+            <if test="condition.goodTypeId != null"> and good_type_id=#{condition.goodTypeId}</if>
+            <if test="condition.goodTypeName != null"> and good_type_name=#{condition.goodTypeName}</if>
+            <if test="condition.goodKindId != null"> and good_kind_id=#{condition.goodKindId}</if>
+            <if test="condition.goodKindName != null"> and good_kind_name=#{condition.goodKindName}</if>
+            <if test="condition.brandId != null"> and brand_id=#{condition.brandId}</if>
+            <if test="condition.brandName != null"> and brand_name=#{condition.brandName}</if>
+            <if test="condition.supplierId != null"> and supplier_id=#{condition.supplierId}</if>
+            <if test="condition.supplierName != null"> and supplier_name=#{condition.supplierName}</if>
+            <if test="condition.unit != null"> and unit=#{condition.unit}</if>
+            <if test="condition.purchasePrice != null"> and purchase_price=#{condition.purchasePrice}</if>
+            <if test="condition.price != null"> and price=#{condition.price}</if>
+            <if test="condition.priceMarket != null"> and price_market=#{condition.priceMarket}</if>
+            <if test="condition.priceGroupBuy != null"> and price_group_buy=#{condition.priceGroupBuy}</if>
+            <if test="condition.credits != null"> and credits=#{condition.credits}</if>
+            <if test="condition.picId != null"> and pic_id=#{condition.picId}</if>
+            <if test="condition.pic != null"> and pic=#{condition.pic}</if>
+            <if test="condition.tag != null"> and tag=#{condition.tag}</if>
+            <if test="condition.beginSaleTime != null"> and begin_sale_time=#{condition.beginSaleTime}</if>
+            <if test="condition.endSaleTime != null"> and end_sale_time=#{condition.endSaleTime}</if>
+            <if test="condition.orderMultiple != null"> and order_multiple=#{condition.orderMultiple}</if>
+            <if test="condition.totalSales != null"> and total_sales=#{condition.totalSales}</if>
+            <if test="condition.dailyNetSales != null"> and daily_net_sales=#{condition.dailyNetSales}</if>
+            <if test="condition.purchaseNum != null"> and purchase_num=#{condition.purchaseNum}</if>
+            <if test="condition.totalCostInventory != null"> and total_cost_inventory=#{condition.totalCostInventory}</if>
+            <if test="condition.averageCostInventory != null"> and average_cost_inventory=#{condition.averageCostInventory}</if>
+            <if test="condition.inventoryMin != null"> and inventory_min=#{condition.inventoryMin}</if>
+            <if test="condition.inventoryMax != null"> and inventory_max=#{condition.inventoryMax}</if>
+            <if test="condition.indexShow != null"> and index_show=#{condition.indexShow}</if>
+            <if test="condition.barcode != null"> and barcode=#{condition.barcode}</if>
+            <if test="condition.creatorId != null"> and creator_id=#{condition.creatorId}</if>
+            <if test="condition.creatorName != null"> and creator_name=#{condition.creatorName}</if>
+            <if test="condition.createTime != null"> and create_time=#{condition.createTime}</if>
+            <if test="condition.modifierId != null"> and modifier_id=#{condition.modifierId}</if>
+            <if test="condition.modifierName != null"> and modifier_name=#{condition.modifierName}</if>
+            <if test="condition.modifyTime != null"> and modify_time=#{condition.modifyTime}</if>
+            <if test="condition.state != null"> and state=#{condition.state}</if>
+            <if test="condition.isInventory != null"> and is_inventory=#{condition.isInventory}</if>
+            <if test="condition.initialnum != null"> and initialNum=#{condition.initialnum}</if>
+            <if test="condition.taxRate != null"> and tax_rate=#{condition.taxRate}</if>
+            <if test="condition.taxPrice != null"> and tax_price=#{condition.taxPrice}</if>
+            <if test="condition.property != null"> and property=#{condition.property}</if>
+            <if test="condition.remark != null"> and remark=#{condition.remark}</if>
+            <if test="condition.areaId != null"> and area_id=#{condition.areaId}</if>
+            <if test="condition.clickNumber != null"> and click_number=#{condition.clickNumber}</if>
+            <if test="condition.deliveryId != null"> and delivery_id=#{condition.deliveryId}</if>
+            <if test="condition.paymentId != null"> and payment_id=#{condition.paymentId}</if>
+            <if test="condition.commentCount != null"> and comment_count=#{condition.commentCount}</if>
+            <if test="condition.sort != null"> and sort=#{condition.sort}</if>
+            <if test="condition.groupNumber != null"> and group_number=#{condition.groupNumber}</if>
+            <if test="condition.beginTime != null"> and begin_time=#{condition.beginTime}</if>
+            <if test="condition.version != null"> and version=#{condition.version}</if>
+            <if test="condition.endTime != null"> and end_time=#{condition.endTime}</if>
+            <if test="condition.isNext != null"> and is_next=#{condition.isNext}</if>
+            <if test="condition.returnRate != null"> and return_rate=#{condition.returnRate}</if>
+            <if test="condition.returnPrice != null"> and return_price=#{condition.returnPrice}</if>
+            <if test="condition.activitNumber != null"> and activit_number=#{condition.activitNumber}</if>
+            <if test="condition.isView != null"> and is_view=#{condition.isView}</if>
+            <if test="condition.totalNum != null"> and total_num=#{condition.totalNum}</if>
+        </where>
+	</update>
+
+	<select id="select" parameterType="java.util.Map" resultMap="result">
+		<include refid="select_all_column" />
+		from good 
+		where id=#{id}
+		<if test="isLock"> for update </if>
+	</select>
+
+	<select id="selectListByIdList" parameterType="java.util.Map" resultMap="result">
+		<include refid="select_all_column" />
+		from good
+		<where>
+			<if test="idList != null">
+			id in
+			<foreach item="item" index="index" collection="idList" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+			</if>
+		</where>
+		<if test="isLock"> for update </if>
+	</select>
+
+	<select id="selectEOByEO" parameterType="java.util.Map" resultMap="result">
+		<include refid="select_all_column" />
+		from good
+		<include refid="where_all" />
+	</select>
+	
+	<sql id="select_all_column">
+		select ID
+            ,code
+            ,name
+            ,good_type_id
+            ,good_type_name
+            ,good_kind_id
+            ,good_kind_name
+            ,brand_id
+            ,brand_name
+            ,supplier_id
+            ,supplier_name
+            ,unit
+            ,purchase_price
+            ,price
+            ,price_market
+            ,price_group_buy
+            ,credits
+            ,pic_id
+            ,pic
+            ,tag
+            ,begin_sale_time
+            ,end_sale_time
+            ,order_multiple
+            ,total_sales
+            ,daily_net_sales
+            ,purchase_num
+            ,total_cost_inventory
+            ,average_cost_inventory
+            ,inventory_min
+            ,inventory_max
+            ,index_show
+            ,barcode
+            ,creator_id
+            ,creator_name
+            ,create_time
+            ,modifier_id
+            ,modifier_name
+            ,modify_time
+            ,state
+            ,is_inventory
+            ,initialNum
+            ,tax_rate
+            ,tax_price
+            ,property
+            ,remark
+            ,area_id
+            ,click_number
+            ,delivery_id
+            ,payment_id
+            ,comment_count
+            ,sort
+            ,group_number
+            ,begin_time
+            ,version
+            ,end_time
+            ,is_next
+            ,return_rate
+            ,return_price
+            ,activit_number
+            ,is_view
+            ,total_num
+	</sql>
+
+	<sql id="where_all">
+		<where>
+            <include refid="condition_all" />
+		</where>
+	</sql>
+
+    <sql id="condition_all">
+        <if test="condition.id != null and condition.id != ''"> and id=#{condition.id} </if>
+        <if test="condition.code != null and condition.code != ''"> and code=#{condition.code} </if>
+        <if test="condition.name != null and condition.name != ''"> and name=#{condition.name} </if>
+        <if test="condition.goodTypeId != null and condition.goodTypeId != ''"> and good_type_id=#{condition.goodTypeId} </if>
+        <if test="condition.goodTypeName != null and condition.goodTypeName != ''"> and good_type_name=#{condition.goodTypeName} </if>
+        <if test="condition.goodKindId != null and condition.goodKindId != ''"> and good_kind_id=#{condition.goodKindId} </if>
+        <if test="condition.goodKindName != null and condition.goodKindName != ''"> and good_kind_name=#{condition.goodKindName} </if>
+        <if test="condition.brandId != null and condition.brandId != ''"> and brand_id=#{condition.brandId} </if>
+        <if test="condition.brandName != null and condition.brandName != ''"> and brand_name=#{condition.brandName} </if>
+        <if test="condition.supplierId != null and condition.supplierId != ''"> and supplier_id=#{condition.supplierId} </if>
+        <if test="condition.supplierName != null and condition.supplierName != ''"> and supplier_name=#{condition.supplierName} </if>
+        <if test="condition.unit != null and condition.unit != ''"> and unit=#{condition.unit} </if>
+        <if test="condition.purchasePrice != null"> and purchase_price=#{condition.purchasePrice} </if>
+        <if test="condition.price != null"> and price=#{condition.price} </if>
+        <if test="condition.priceMarket != null"> and price_market=#{condition.priceMarket} </if>
+        <if test="condition.priceGroupBuy != null"> and price_group_buy=#{condition.priceGroupBuy} </if>
+        <if test="condition.credits != null"> and credits=#{condition.credits} </if>
+        <if test="condition.picId != null and condition.picId != ''"> and pic_id=#{condition.picId} </if>
+        <if test="condition.pic != null and condition.pic != ''"> and pic=#{condition.pic} </if>
+        <if test="condition.tag != null and condition.tag != ''"> and tag=#{condition.tag} </if>
+        <if test="condition.beginSaleTime != null"> and begin_sale_time=#{condition.beginSaleTime} </if>
+        <if test="condition.endSaleTime != null"> and end_sale_time=#{condition.endSaleTime} </if>
+        <if test="condition.orderMultiple != null"> and order_multiple=#{condition.orderMultiple} </if>
+        <if test="condition.totalSales != null"> and total_sales=#{condition.totalSales} </if>
+        <if test="condition.dailyNetSales != null"> and daily_net_sales=#{condition.dailyNetSales} </if>
+        <if test="condition.purchaseNum != null"> and purchase_num=#{condition.purchaseNum} </if>
+        <if test="condition.totalCostInventory != null"> and total_cost_inventory=#{condition.totalCostInventory} </if>
+        <if test="condition.averageCostInventory != null"> and average_cost_inventory=#{condition.averageCostInventory} </if>
+        <if test="condition.inventoryMin != null"> and inventory_min=#{condition.inventoryMin} </if>
+        <if test="condition.inventoryMax != null"> and inventory_max=#{condition.inventoryMax} </if>
+        <if test="condition.indexShow != null and condition.indexShow != ''"> and index_show=#{condition.indexShow} </if>
+        <if test="condition.barcode != null and condition.barcode != ''"> and barcode=#{condition.barcode} </if>
+        <if test="condition.creatorId != null and condition.creatorId != ''"> and creator_id=#{condition.creatorId} </if>
+        <if test="condition.creatorName != null and condition.creatorName != ''"> and creator_name=#{condition.creatorName} </if>
+        <if test="condition.createTime != null"> and create_time=#{condition.createTime} </if>
+        <if test="condition.modifierId != null and condition.modifierId != ''"> and modifier_id=#{condition.modifierId} </if>
+        <if test="condition.modifierName != null and condition.modifierName != ''"> and modifier_name=#{condition.modifierName} </if>
+        <if test="condition.modifyTime != null"> and modify_time=#{condition.modifyTime} </if>
+        <if test="condition.state != null and condition.state != ''"> and state=#{condition.state} </if>
+        <if test="condition.isInventory != null and condition.isInventory != ''"> and is_inventory=#{condition.isInventory} </if>
+        <if test="condition.initialnum != null"> and initialNum=#{condition.initialnum} </if>
+        <if test="condition.taxRate != null"> and tax_rate=#{condition.taxRate} </if>
+        <if test="condition.taxPrice != null"> and tax_price=#{condition.taxPrice} </if>
+        <if test="condition.property != null and condition.property != ''"> and property=#{condition.property} </if>
+        <if test="condition.remark != null and condition.remark != ''"> and remark=#{condition.remark} </if>
+        <if test="condition.areaId != null and condition.areaId != ''"> and area_id=#{condition.areaId} </if>
+        <if test="condition.clickNumber != null"> and click_number=#{condition.clickNumber} </if>
+        <if test="condition.deliveryId != null and condition.deliveryId != ''"> and delivery_id=#{condition.deliveryId} </if>
+        <if test="condition.paymentId != null and condition.paymentId != ''"> and payment_id=#{condition.paymentId} </if>
+        <if test="condition.commentCount != null"> and comment_count=#{condition.commentCount} </if>
+        <if test="condition.sort != null"> and sort=#{condition.sort} </if>
+        <if test="condition.groupNumber != null"> and group_number=#{condition.groupNumber} </if>
+        <if test="condition.beginTime != null"> and begin_time=#{condition.beginTime} </if>
+        <if test="condition.version != null"> and version=#{condition.version} </if>
+        <if test="condition.endTime != null"> and end_time=#{condition.endTime} </if>
+        <if test="condition.isNext != null and condition.isNext != ''"> and is_next=#{condition.isNext} </if>
+        <if test="condition.returnRate != null"> and return_rate=#{condition.returnRate} </if>
+        <if test="condition.returnPrice != null"> and return_price=#{condition.returnPrice} </if>
+        <if test="condition.activitNumber != null and condition.activitNumber != ''"> and activit_number=#{condition.activitNumber} </if>
+        <if test="condition.isView != null and condition.isView != ''"> and is_view=#{condition.isView} </if>
+        <if test="condition.totalNum != null and condition.totalNum != ''"> and total_num=#{condition.totalNum} </if>
+    </sql>
+
+	<delete id="delete" parameterType="com.maiya.shopcloud.goods.dao.good.GoodDO">
+		delete from good
+		where id=#{id}
+		    and VERSION=#{version}
+	</delete>
+
+</mapper>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BaseGoodKindDAO">
+	<resultMap id="result" type="com.maiya.shopcloud.goods.dao.goodkind.GoodKindDO">
+		<id property="id" column="id" />
+		<result property="code" column="code" />
+		<result property="name" column="name" />
+		<result property="goodTypeId" column="good_type_id" />
+		<result property="goodTypeName" column="good_type_name" />
+		<result property="sort" column="sort" />
+		<result property="remark" column="remark" />
+		<result property="creatorId" column="creator_id" />
+		<result property="creatorName" column="creator_name" />
+		<result property="createTime" column="create_time" />
+		<result property="modifierId" column="modifier_id" />
+		<result property="modifierName" column="modifier_name" />
+		<result property="modifyTime" column="modify_time" />
+		<result property="state" column="state" />
+	</resultMap>
+	
+	<sql id="insert_columns">
+            <if test="code != null">, code</if>
+            <if test="name != null">, name</if>
+            <if test="goodTypeId != null">, good_type_id</if>
+            <if test="goodTypeName != null">, good_type_name</if>
+            <if test="sort != null">, sort</if>
+            <if test="remark != null">, remark</if>
+            <if test="creatorId != null">, creator_id</if>
+            <if test="creatorName != null">, creator_name</if>
+            <if test="createTime != null">, create_time</if>
+            <if test="modifierId != null">, modifier_id</if>
+            <if test="modifierName != null">, modifier_name</if>
+            <if test="modifyTime != null">, modify_time</if>
+            <if test="state != null">, state</if>
+	</sql>
+	
+	<sql id="insert_all_columns">
+			code
+            ,name
+            ,good_type_id
+            ,good_type_name
+            ,sort
+            ,remark
+            ,creator_id
+            ,creator_name
+            ,create_time
+            ,modifier_id
+            ,modifier_name
+            ,modify_time
+            ,state
+	</sql>
+
+	<sql id="insert_values">
+          <if test="code != null">, #{code}</if>
+          <if test="name != null">, #{name}</if>
+          <if test="goodTypeId != null">, #{goodTypeId}</if>
+          <if test="goodTypeName != null">, #{goodTypeName}</if>
+          <if test="sort != null">, #{sort}</if>
+          <if test="remark != null">, #{remark}</if>
+          <if test="creatorId != null">, #{creatorId}</if>
+          <if test="creatorName != null">, #{creatorName}</if>
+          <if test="createTime != null">, #{createTime}</if>
+          <if test="modifierId != null">, #{modifierId}</if>
+          <if test="modifierName != null">, #{modifierName}</if>
+          <if test="modifyTime != null">, #{modifyTime}</if>
+          <if test="state != null">, #{state}</if>
+	</sql>
+
+    <sql id="batch_insert_values">
+            #{item.code}
+            ,#{item.name}
+            ,#{item.goodTypeId}
+            ,#{item.goodTypeName}
+            ,#{item.sort}
+            ,#{item.remark}
+            ,#{item.creatorId}
+            ,#{item.creatorName}
+            ,#{item.createTime}
+            ,#{item.modifierId}
+            ,#{item.modifierName}
+            ,#{item.modifyTime}
+            ,#{item.state}
+    </sql>
+    
+    <sql id="insert_all_values">
+            #{code}
+            ,#{name}
+            ,#{goodTypeId}
+            ,#{goodTypeName}
+            ,#{sort}
+            ,#{remark}
+            ,#{creatorId}
+            ,#{creatorName}
+            ,#{createTime}
+            ,#{modifierId}
+            ,#{modifierName}
+            ,#{modifyTime}
+            ,#{state}
+    </sql>
+	
+	<insert id="insertHasId" parameterType="com.maiya.shopcloud.goods.dao.goodkind.GoodKindDO" useGeneratedKeys="false">
+		insert into good_kind(
+			id,
+			<include refid="insert_columns" />
+		)values(
+			#{id},
+			<include refid="insert_values" />
+		)
+	</insert>
+	
+	<insert id="batchInsertHasId"  parameterType="java.util.List" useGeneratedKeys="false">
+		insert into good_kind(
+			id,
+			<include refid="insert_all_columns" />
+		)values
+		<foreach collection="list" item="item" index="index" separator=",">
+		(
+		    #{item.id},
+            <include refid="batch_insert_values" />
+		)
+		</foreach>
+	</insert>
+
+	<insert id="insert" parameterType="com.maiya.shopcloud.goods.dao.goodkind.GoodKindDO"  useGeneratedKeys="true" keyProperty="id">
+		insert into good_kind(
+			<include refid="insert_all_columns" />
+		)values(
+			<include refid="insert_all_values" />
+		)
+	</insert>
+
+	<insert id="batchInsert" parameterType="java.util.List" useGeneratedKeys="true">
+		insert into good_kind(
+			<include refid="insert_all_columns" />
+		)values
+		<foreach collection="list" item="item" index="index" separator=",">
+		(
+            <include refid="batch_insert_values" />
+		)
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.maiya.shopcloud.goods.dao.goodkind.GoodKindDO">
+        update good_kind
+        <set>
+            <if test="code != null"> code=#{code}, </if>
+            <if test="name != null"> name=#{name}, </if>
+            <if test="goodTypeId != null"> good_type_id=#{goodTypeId}, </if>
+            <if test="goodTypeName != null"> good_type_name=#{goodTypeName}, </if>
+            <if test="sort != null"> sort=#{sort}, </if>
+            <if test="remark != null"> remark=#{remark}, </if>
+            <if test="creatorId != null"> creator_id=#{creatorId}, </if>
+            <if test="creatorName != null"> creator_name=#{creatorName}, </if>
+            <if test="createTime != null"> create_time=#{createTime}, </if>
+            <if test="modifierId != null"> modifier_id=#{modifierId}, </if>
+            <if test="modifierName != null"> modifier_name=#{modifierName}, </if>
+            <if test="modifyTime != null"> modify_time=#{modifyTime}, </if>
+            <if test="state != null"> state=#{state}, </if>
+        </set>
+		where id=#{id}
+	</update>
+
+	<update id="updateByField" parameterType="java.util.HashMap">
+        update good_kind
+        <set>
+            <if test="template.code != null"> code=#{template.code}, </if>
+            <if test="template.name != null"> name=#{template.name}, </if>
+            <if test="template.goodTypeId != null"> good_type_id=#{template.goodTypeId}, </if>
+            <if test="template.goodTypeName != null"> good_type_name=#{template.goodTypeName}, </if>
+            <if test="template.sort != null"> sort=#{template.sort}, </if>
+            <if test="template.remark != null"> remark=#{template.remark}, </if>
+            <if test="template.creatorId != null"> creator_id=#{template.creatorId}, </if>
+            <if test="template.creatorName != null"> creator_name=#{template.creatorName}, </if>
+            <if test="template.createTime != null"> create_time=#{template.createTime}, </if>
+            <if test="template.modifierId != null"> modifier_id=#{template.modifierId}, </if>
+            <if test="template.modifierName != null"> modifier_name=#{template.modifierName}, </if>
+            <if test="template.modifyTime != null"> modify_time=#{template.modifyTime}, </if>
+            <if test="template.state != null"> state=#{template.state}, </if>
+        </set>
+		<where>
+            <if test="condition.id != null"> and id=#{condition.id}</if>
+            <if test="condition.code != null"> and code=#{condition.code}</if>
+            <if test="condition.name != null"> and name=#{condition.name}</if>
+            <if test="condition.goodTypeId != null"> and good_type_id=#{condition.goodTypeId}</if>
+            <if test="condition.goodTypeName != null"> and good_type_name=#{condition.goodTypeName}</if>
+            <if test="condition.sort != null"> and sort=#{condition.sort}</if>
+            <if test="condition.remark != null"> and remark=#{condition.remark}</if>
+            <if test="condition.creatorId != null"> and creator_id=#{condition.creatorId}</if>
+            <if test="condition.creatorName != null"> and creator_name=#{condition.creatorName}</if>
+            <if test="condition.createTime != null"> and create_time=#{condition.createTime}</if>
+            <if test="condition.modifierId != null"> and modifier_id=#{condition.modifierId}</if>
+            <if test="condition.modifierName != null"> and modifier_name=#{condition.modifierName}</if>
+            <if test="condition.modifyTime != null"> and modify_time=#{condition.modifyTime}</if>
+            <if test="condition.state != null"> and state=#{condition.state}</if>
+        </where>
+	</update>
+
+	<select id="select" parameterType="java.util.Map" resultMap="result">
+		<include refid="select_all_column" />
+		from good_kind 
+		where id=#{id}
+		<if test="isLock"> for update </if>
+	</select>
+
+	<select id="selectListByIdList" parameterType="java.util.Map" resultMap="result">
+		<include refid="select_all_column" />
+		from good_kind
+		<where>
+			<if test="idList != null">
+			id in
+			<foreach item="item" index="index" collection="idList" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+			</if>
+		</where>
+		<if test="isLock"> for update </if>
+	</select>
+
+	<select id="selectEOByEO" parameterType="java.util.Map" resultMap="result">
+		<include refid="select_all_column" />
+		from good_kind
+		<include refid="where_all" />
+	</select>
+	
+	<sql id="select_all_column">
+		select ID
+            ,code
+            ,name
+            ,good_type_id
+            ,good_type_name
+            ,sort
+            ,remark
+            ,creator_id
+            ,creator_name
+            ,create_time
+            ,modifier_id
+            ,modifier_name
+            ,modify_time
+            ,state
+	</sql>
+
+	<sql id="where_all">
+		<where>
+            <include refid="condition_all" />
+		</where>
+	</sql>
+
+    <sql id="condition_all">
+        <if test="condition.id != null and condition.id != ''"> and id=#{condition.id} </if>
+        <if test="condition.code != null and condition.code != ''"> and code=#{condition.code} </if>
+        <if test="condition.name != null and condition.name != ''"> and name=#{condition.name} </if>
+        <if test="condition.goodTypeId != null and condition.goodTypeId != ''"> and good_type_id=#{condition.goodTypeId} </if>
+        <if test="condition.goodTypeName != null and condition.goodTypeName != ''"> and good_type_name=#{condition.goodTypeName} </if>
+        <if test="condition.sort != null"> and sort=#{condition.sort} </if>
+        <if test="condition.remark != null and condition.remark != ''"> and remark=#{condition.remark} </if>
+        <if test="condition.creatorId != null and condition.creatorId != ''"> and creator_id=#{condition.creatorId} </if>
+        <if test="condition.creatorName != null and condition.creatorName != ''"> and creator_name=#{condition.creatorName} </if>
+        <if test="condition.createTime != null"> and create_time=#{condition.createTime} </if>
+        <if test="condition.modifierId != null and condition.modifierId != ''"> and modifier_id=#{condition.modifierId} </if>
+        <if test="condition.modifierName != null and condition.modifierName != ''"> and modifier_name=#{condition.modifierName} </if>
+        <if test="condition.modifyTime != null"> and modify_time=#{condition.modifyTime} </if>
+        <if test="condition.state != null and condition.state != ''"> and state=#{condition.state} </if>
+    </sql>
+
+	<delete id="delete" parameterType="com.maiya.shopcloud.goods.dao.goodkind.GoodKindDO">
+		delete from good_kind
+		where id=#{id}
+	</delete>
+
+</mapper>
