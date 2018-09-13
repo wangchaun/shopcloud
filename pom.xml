@@ -19,6 +19,8 @@
         <module>shopcloud-provider</module>
         <module>shopcloud-provider-api</module>
         <module>shopcloud-common</module>
+        <module>shopcloud-eureka</module>
+        <module>shopcloud-gateway</module>
     </modules>
 
     <properties>
