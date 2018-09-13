@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface GoodTypeService extends IService<GoodTypeDO> {
 
-    public List<GoodTypeVo> queryTypeTree();
+    List<GoodTypeVo> queryTypeTree();
 }
