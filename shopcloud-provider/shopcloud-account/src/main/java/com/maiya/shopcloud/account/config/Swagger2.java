@@ -20,7 +20,7 @@ public class Swagger2 {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.maiya.shopcloud.goods.web"))
+                .apis(RequestHandlerSelectors.basePackage("com.maiya.shopcloud.account.web"))
                 .paths(PathSelectors.any())
                 .build();
     }
