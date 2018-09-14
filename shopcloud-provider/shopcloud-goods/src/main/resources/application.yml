@@ -3,10 +3,12 @@ server:
 
 eureka:
   client:
-    #设置为fasle将不会启动注册操作
-    fetch-registry: false
-    #设置为fasle将不会启动注册操作
-    register-with-eureka: false
+    serviceUrl:
+      defaultZone: http://root:root@localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
+    prefer-ip-address: true # 表示将自己的IP注册到 Eureka Server ，若设置false，则表示注册微服务所在操作系统的hostname到Eureka Server
+
 
 spring:
   datasource:
@@ -29,5 +31,8 @@ spring:
       time-between-eviction-runs-millis: 60000
       #配置一个连接在池中最小生存的时间，单位是毫秒
       min-evictable-idle-time-millis: 300000
+
+  application:
+    name: shopcloud-goods #用于指定注册到 Eureka Server上的应用名称
 
 

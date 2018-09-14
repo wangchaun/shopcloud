@@ -5,11 +5,11 @@ spring:
   profiles:
     active: dev
   application:
-    name: @pom.artifactId@
+    name: shopcloud-eureka
 
 security:
   basic:
-    enabled: true
+    enabled: true #开启基于HTTP basic的认证
   user:
     name: root
     password: root
