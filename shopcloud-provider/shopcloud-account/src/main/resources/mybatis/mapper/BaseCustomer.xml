@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BaseCustomerDAO">
+	<resultMap id="result" type="com.maiya.shopcloud.account.customer.CustomerDO">
+		<id property="id" column="id" />
+		<result property="type" column="type" />
+		<result property="name" column="name" />
+		<result property="cardNumber" column="card_number" />
+		<result property="code" column="code" />
+		<result property="sex" column="sex" />
+		<result property="account" column="account" />
+		<result property="pwd" column="pwd" />
+		<result property="payables" column="payables" />
+		<result property="vipLevelId" column="vip_level_id" />
+		<result property="vipLevelName" column="vip_level_name" />
+		<result property="credits" column="credits" />
+		<result property="companyName" column="company_name" />
+		<result property="companyAddress" column="company_address" />
+		<result property="linkman" column="linkman" />
+		<result property="mobile" column="mobile" />
+		<result property="telephone" column="telephone" />
+		<result property="email" column="email" />
+		<result property="areaIds" column="area_ids" />
+		<result property="areaNames" column="area_names" />
+		<result property="street" column="street" />
+		<result property="zipCode" column="zip_code" />
+		<result property="remark" column="remark" />
+		<result property="creatorId" column="creator_id" />
+		<result property="creatorName" column="creator_name" />
+		<result property="createTime" column="create_time" />
+		<result property="modifierId" column="modifier_id" />
+		<result property="modifierName" column="modifier_name" />
+		<result property="modifyTime" column="modify_time" />
+		<result property="state" column="state" />
+		<result property="warehouseId" column="warehouse_Id" />
+		<result property="warehouseName" column="warehouse_Name" />
+		<result property="maritalstatus" column="maritalstatus" />
+		<result property="schooling" column="schooling" />
+		<result property="salary" column="salary" />
+		<result property="isPinlessmobile" column="is_pinlessmobile" />
+		<result property="isPinlessemail" column="is_pinlessemail" />
+		<result property="pic" column="pic" />
+		<result property="picId" column="pic_id" />
+		<result property="idCard" column="id_card" />
+		<result property="cardEndtime" column="card_endtime" />
+		<result property="cardAddress" column="card_address" />
+		<result property="innerPicid" column="inner_picId" />
+		<result property="innerPic" column="inner_pic" />
+		<result property="innerName" column="inner_name" />
+		<result property="innerArea" column="inner_area" />
+		<result property="innerIntroduce" column="inner_introduce" />
+		<result property="agree" column="agree" />
+		<result property="credit" column="credit" />
+		<result property="clintip" column="clintIp" />
+	</resultMap>
+	
+	<sql id="insert_columns">
+            <if test="type != null">type</if>
+            <if test="name != null">name</if>
+            <if test="cardNumber != null">card_number</if>
+            <if test="code != null">code</if>
+            <if test="sex != null">sex</if>
+            <if test="account != null">account</if>
+            <if test="pwd != null">pwd</if>
+            <if test="payables != null">payables</if>
+            <if test="vipLevelId != null">vip_level_id</if>
+            <if test="vipLevelName != null">vip_level_name</if>
+            <if test="credits != null">credits</if>
+            <if test="companyName != null">company_name</if>
+            <if test="companyAddress != null">company_address</if>
+            <if test="linkman != null">linkman</if>
+            <if test="mobile != null">mobile</if>
+            <if test="telephone != null">telephone</if>
+            <if test="email != null">email</if>
+            <if test="areaIds != null">area_ids</if>
+            <if test="areaNames != null">area_names</if>
+            <if test="street != null">street</if>
+            <if test="zipCode != null">zip_code</if>
+            <if test="remark != null">remark</if>
+            <if test="creatorId != null">creator_id</if>
+            <if test="creatorName != null">creator_name</if>
+            <if test="createTime != null">create_time</if>
+            <if test="modifierId != null">modifier_id</if>
+            <if test="modifierName != null">modifier_name</if>
+            <if test="modifyTime != null">modify_time</if>
+            <if test="state != null">state</if>
+            <if test="warehouseId != null">warehouse_Id</if>
+            <if test="warehouseName != null">warehouse_Name</if>
+            <if test="maritalstatus != null">maritalstatus</if>
+            <if test="schooling != null">schooling</if>
+            <if test="salary != null">salary</if>
+            <if test="isPinlessmobile != null">is_pinlessmobile</if>
+            <if test="isPinlessemail != null">is_pinlessemail</if>
+            <if test="pic != null">pic</if>
+            <if test="picId != null">pic_id</if>
+            <if test="idCard != null">id_card</if>
+            <if test="cardEndtime != null">card_endtime</if>
+            <if test="cardAddress != null">card_address</if>
+            <if test="innerPicid != null">inner_picId</if>
+            <if test="innerPic != null">inner_pic</if>
+            <if test="innerName != null">inner_name</if>
+            <if test="innerArea != null">inner_area</if>
+            <if test="innerIntroduce != null">inner_introduce</if>
+            <if test="agree != null">agree</if>
+            <if test="credit != null">credit</if>
+            <if test="clintip != null">clintIp</if>
+	</sql>
+	
+	<sql id="insert_all_columns">
+			type
+            ,name
+            ,card_number
+            ,code
+            ,sex
+            ,account
+            ,pwd
+            ,payables
+            ,vip_level_id
+            ,vip_level_name
+            ,credits
+            ,company_name
+            ,company_address
+            ,linkman
+            ,mobile
+            ,telephone
+            ,email
+            ,area_ids
+            ,area_names
+            ,street
+            ,zip_code
+            ,remark
+            ,creator_id
+            ,creator_name
+            ,create_time
+            ,modifier_id
+            ,modifier_name
+            ,modify_time
+            ,state
+            ,warehouse_Id
+            ,warehouse_Name
+            ,maritalstatus
+            ,schooling
+            ,salary
+            ,is_pinlessmobile
+            ,is_pinlessemail
+            ,pic
+            ,pic_id
+            ,id_card
+            ,card_endtime
+            ,card_address
+            ,inner_picId
+            ,inner_pic
+            ,inner_name
+            ,inner_area
+            ,inner_introduce
+            ,agree
+            ,credit
+            ,clintIp
+	</sql>
+
+	<sql id="insert_values">
+          <if test="type != null">#{type}</if>
+          <if test="name != null">#{name}</if>
+          <if test="cardNumber != null">#{cardNumber}</if>
+          <if test="code != null">#{code}</if>
+          <if test="sex != null">#{sex}</if>
+          <if test="account != null">#{account}</if>
+          <if test="pwd != null">#{pwd}</if>
+          <if test="payables != null">#{payables}</if>
+          <if test="vipLevelId != null">#{vipLevelId}</if>
+          <if test="vipLevelName != null">#{vipLevelName}</if>
+          <if test="credits != null">#{credits}</if>
+          <if test="companyName != null">#{companyName}</if>
+          <if test="companyAddress != null">#{companyAddress}</if>
+          <if test="linkman != null">#{linkman}</if>
+          <if test="mobile != null">#{mobile}</if>
+          <if test="telephone != null">#{telephone}</if>
+          <if test="email != null">#{email}</if>
+          <if test="areaIds != null">#{areaIds}</if>
+          <if test="areaNames != null">#{areaNames}</if>
+          <if test="street != null">#{street}</if>
+          <if test="zipCode != null">#{zipCode}</if>
+          <if test="remark != null">#{remark}</if>
+          <if test="creatorId != null">#{creatorId}</if>
+          <if test="creatorName != null">#{creatorName}</if>
+          <if test="createTime != null">#{createTime}</if>
+          <if test="modifierId != null">#{modifierId}</if>
+          <if test="modifierName != null">#{modifierName}</if>
+          <if test="modifyTime != null">#{modifyTime}</if>
+          <if test="state != null">#{state}</if>
+          <if test="warehouseId != null">#{warehouseId}</if>
+          <if test="warehouseName != null">#{warehouseName}</if>
+          <if test="maritalstatus != null">#{maritalstatus}</if>
+          <if test="schooling != null">#{schooling}</if>
+          <if test="salary != null">#{salary}</if>
+          <if test="isPinlessmobile != null">#{isPinlessmobile}</if>
+          <if test="isPinlessemail != null">#{isPinlessemail}</if>
+          <if test="pic != null">#{pic}</if>
+          <if test="picId != null">#{picId}</if>
+          <if test="idCard != null">#{idCard}</if>
+          <if test="cardEndtime != null">#{cardEndtime}</if>
+          <if test="cardAddress != null">#{cardAddress}</if>
+          <if test="innerPicid != null">#{innerPicid}</if>
+          <if test="innerPic != null">#{innerPic}</if>
+          <if test="innerName != null">#{innerName}</if>
+          <if test="innerArea != null">#{innerArea}</if>
+          <if test="innerIntroduce != null">#{innerIntroduce}</if>
+          <if test="agree != null">#{agree}</if>
+          <if test="credit != null">#{credit}</if>
+          <if test="clintip != null">#{clintip}</if>
+	</sql>
+
+    <sql id="batch_insert_values">
+            #{item.type}
+            ,#{item.name}
+            ,#{item.cardNumber}
+            ,#{item.code}
+            ,#{item.sex}
+            ,#{item.account}
+            ,#{item.pwd}
+            ,#{item.payables}
+            ,#{item.vipLevelId}
+            ,#{item.vipLevelName}
+            ,#{item.credits}
+            ,#{item.companyName}
+            ,#{item.companyAddress}
+            ,#{item.linkman}
+            ,#{item.mobile}
+            ,#{item.telephone}
+            ,#{item.email}
+            ,#{item.areaIds}
+            ,#{item.areaNames}
+            ,#{item.street}
+            ,#{item.zipCode}
+            ,#{item.remark}
+            ,#{item.creatorId}
+            ,#{item.creatorName}
+            ,#{item.createTime}
+            ,#{item.modifierId}
+            ,#{item.modifierName}
+            ,#{item.modifyTime}
+            ,#{item.state}
+            ,#{item.warehouseId}
+            ,#{item.warehouseName}
+            ,#{item.maritalstatus}
+            ,#{item.schooling}
+            ,#{item.salary}
+            ,#{item.isPinlessmobile}
+            ,#{item.isPinlessemail}
+            ,#{item.pic}
+            ,#{item.picId}
+            ,#{item.idCard}
+            ,#{item.cardEndtime}
+            ,#{item.cardAddress}
+            ,#{item.innerPicid}
+            ,#{item.innerPic}
+            ,#{item.innerName}
+            ,#{item.innerArea}
+            ,#{item.innerIntroduce}
+            ,#{item.agree}
+            ,#{item.credit}
+            ,#{item.clintip}
+    </sql>
+    
+    <sql id="insert_all_values">
+            #{type}
+            ,#{name}
+            ,#{cardNumber}
+            ,#{code}
+            ,#{sex}
+            ,#{account}
+            ,#{pwd}
+            ,#{payables}
+            ,#{vipLevelId}
+            ,#{vipLevelName}
+            ,#{credits}
+            ,#{companyName}
+            ,#{companyAddress}
+            ,#{linkman}
+            ,#{mobile}
+            ,#{telephone}
+            ,#{email}
+            ,#{areaIds}
+            ,#{areaNames}
+            ,#{street}
+            ,#{zipCode}
+            ,#{remark}
+            ,#{creatorId}
+            ,#{creatorName}
+            ,#{createTime}
+            ,#{modifierId}
+            ,#{modifierName}
+            ,#{modifyTime}
+            ,#{state}
+            ,#{warehouseId}
+            ,#{warehouseName}
+            ,#{maritalstatus}
+            ,#{schooling}
+            ,#{salary}
+            ,#{isPinlessmobile}
+            ,#{isPinlessemail}
+            ,#{pic}
+            ,#{picId}
+            ,#{idCard}
+            ,#{cardEndtime}
+            ,#{cardAddress}
+            ,#{innerPicid}
+            ,#{innerPic}
+            ,#{innerName}
+            ,#{innerArea}
+            ,#{innerIntroduce}
+            ,#{agree}
+            ,#{credit}
+            ,#{clintip}
+    </sql>
+	
+	<insert id="insertHasId" parameterType="com.maiya.shopcloud.account.customer.CustomerDO" useGeneratedKeys="false">
+		insert into customer(
+			id,
+			<include refid="insert_columns" />
+		)values(
+			#{id},
+			<include refid="insert_values" />
+		)
+	</insert>
+	
+	<insert id="batchInsertHasId"  parameterType="java.util.List" useGeneratedKeys="false">
+		insert into customer(
+			id,
+			<include refid="insert_all_columns" />
+		)values
+		<foreach collection="list" item="item" index="index" separator=",">
+		(
+		    #{item.id},
+            <include refid="batch_insert_values" />
+		)
+		</foreach>
+	</insert>
+
+	<insert id="insert" parameterType="com.maiya.shopcloud.account.customer.CustomerDO"  useGeneratedKeys="true" keyProperty="id">
+		insert into customer(
+			<include refid="insert_all_columns" />
+		)values(
+			<include refid="insert_all_values" />
+		)
+	</insert>
+
+	<insert id="batchInsert" parameterType="java.util.List" useGeneratedKeys="true">
+		insert into customer(
+			<include refid="insert_all_columns" />
+		)values
+		<foreach collection="list" item="item" index="index" separator=",">
+		(
+            <include refid="batch_insert_values" />
+		)
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.maiya.shopcloud.account.customer.CustomerDO">
+        update customer
+        <set>
+            <if test="type != null"> type=#{type}, </if>
+            <if test="name != null"> name=#{name}, </if>
+            <if test="cardNumber != null"> card_number=#{cardNumber}, </if>
+            <if test="code != null"> code=#{code}, </if>
+            <if test="sex != null"> sex=#{sex}, </if>
+            <if test="account != null"> account=#{account}, </if>
+            <if test="pwd != null"> pwd=#{pwd}, </if>
+            <if test="payables != null"> payables=#{payables}, </if>
+            <if test="vipLevelId != null"> vip_level_id=#{vipLevelId}, </if>
+            <if test="vipLevelName != null"> vip_level_name=#{vipLevelName}, </if>
+            <if test="credits != null"> credits=#{credits}, </if>
+            <if test="companyName != null"> company_name=#{companyName}, </if>
+            <if test="companyAddress != null"> company_address=#{companyAddress}, </if>
+            <if test="linkman != null"> linkman=#{linkman}, </if>
+            <if test="mobile != null"> mobile=#{mobile}, </if>
+            <if test="telephone != null"> telephone=#{telephone}, </if>
+            <if test="email != null"> email=#{email}, </if>
+            <if test="areaIds != null"> area_ids=#{areaIds}, </if>
+            <if test="areaNames != null"> area_names=#{areaNames}, </if>
+            <if test="street != null"> street=#{street}, </if>
+            <if test="zipCode != null"> zip_code=#{zipCode}, </if>
+            <if test="remark != null"> remark=#{remark}, </if>
+            <if test="creatorId != null"> creator_id=#{creatorId}, </if>
+            <if test="creatorName != null"> creator_name=#{creatorName}, </if>
+            <if test="createTime != null"> create_time=#{createTime}, </if>
+            <if test="modifierId != null"> modifier_id=#{modifierId}, </if>
+            <if test="modifierName != null"> modifier_name=#{modifierName}, </if>
+            <if test="modifyTime != null"> modify_time=#{modifyTime}, </if>
+            <if test="state != null"> state=#{state}, </if>
+            <if test="warehouseId != null"> warehouse_Id=#{warehouseId}, </if>
+            <if test="warehouseName != null"> warehouse_Name=#{warehouseName}, </if>
+            <if test="maritalstatus != null"> maritalstatus=#{maritalstatus}, </if>
+            <if test="schooling != null"> schooling=#{schooling}, </if>
+            <if test="salary != null"> salary=#{salary}, </if>
+            <if test="isPinlessmobile != null"> is_pinlessmobile=#{isPinlessmobile}, </if>
+            <if test="isPinlessemail != null"> is_pinlessemail=#{isPinlessemail}, </if>
+            <if test="pic != null"> pic=#{pic}, </if>
+            <if test="picId != null"> pic_id=#{picId}, </if>
+            <if test="idCard != null"> id_card=#{idCard}, </if>
+            <if test="cardEndtime != null"> card_endtime=#{cardEndtime}, </if>
+            <if test="cardAddress != null"> card_address=#{cardAddress}, </if>
+            <if test="innerPicid != null"> inner_picId=#{innerPicid}, </if>
+            <if test="innerPic != null"> inner_pic=#{innerPic}, </if>
+            <if test="innerName != null"> inner_name=#{innerName}, </if>
+            <if test="innerArea != null"> inner_area=#{innerArea}, </if>
+            <if test="innerIntroduce != null"> inner_introduce=#{innerIntroduce}, </if>
+            <if test="agree != null"> agree=#{agree}, </if>
+            <if test="credit != null"> credit=#{credit}, </if>
+            <if test="clintip != null"> clintIp=#{clintip}, </if>
+        </set>
+		where id=#{id}
+	</update>
+
+	<update id="updateByField" parameterType="java.util.HashMap">
+        update customer
+        <set>
+            <if test="template.type != null"> type=#{template.type}, </if>
+            <if test="template.name != null"> name=#{template.name}, </if>
+            <if test="template.cardNumber != null"> card_number=#{template.cardNumber}, </if>
+            <if test="template.code != null"> code=#{template.code}, </if>
+            <if test="template.sex != null"> sex=#{template.sex}, </if>
+            <if test="template.account != null"> account=#{template.account}, </if>
+            <if test="template.pwd != null"> pwd=#{template.pwd}, </if>
+            <if test="template.payables != null"> payables=#{template.payables}, </if>
+            <if test="template.vipLevelId != null"> vip_level_id=#{template.vipLevelId}, </if>
+            <if test="template.vipLevelName != null"> vip_level_name=#{template.vipLevelName}, </if>
+            <if test="template.credits != null"> credits=#{template.credits}, </if>
+            <if test="template.companyName != null"> company_name=#{template.companyName}, </if>
+            <if test="template.companyAddress != null"> company_address=#{template.companyAddress}, </if>
+            <if test="template.linkman != null"> linkman=#{template.linkman}, </if>
+            <if test="template.mobile != null"> mobile=#{template.mobile}, </if>
+            <if test="template.telephone != null"> telephone=#{template.telephone}, </if>
+            <if test="template.email != null"> email=#{template.email}, </if>
+            <if test="template.areaIds != null"> area_ids=#{template.areaIds}, </if>
+            <if test="template.areaNames != null"> area_names=#{template.areaNames}, </if>
+            <if test="template.street != null"> street=#{template.street}, </if>
+            <if test="template.zipCode != null"> zip_code=#{template.zipCode}, </if>
+            <if test="template.remark != null"> remark=#{template.remark}, </if>
+            <if test="template.creatorId != null"> creator_id=#{template.creatorId}, </if>
+            <if test="template.creatorName != null"> creator_name=#{template.creatorName}, </if>
+            <if test="template.createTime != null"> create_time=#{template.createTime}, </if>
+            <if test="template.modifierId != null"> modifier_id=#{template.modifierId}, </if>
+            <if test="template.modifierName != null"> modifier_name=#{template.modifierName}, </if>
+            <if test="template.modifyTime != null"> modify_time=#{template.modifyTime}, </if>
+            <if test="template.state != null"> state=#{template.state}, </if>
+            <if test="template.warehouseId != null"> warehouse_Id=#{template.warehouseId}, </if>
+            <if test="template.warehouseName != null"> warehouse_Name=#{template.warehouseName}, </if>
+            <if test="template.maritalstatus != null"> maritalstatus=#{template.maritalstatus}, </if>
+            <if test="template.schooling != null"> schooling=#{template.schooling}, </if>
+            <if test="template.salary != null"> salary=#{template.salary}, </if>
+            <if test="template.isPinlessmobile != null"> is_pinlessmobile=#{template.isPinlessmobile}, </if>
+            <if test="template.isPinlessemail != null"> is_pinlessemail=#{template.isPinlessemail}, </if>
+            <if test="template.pic != null"> pic=#{template.pic}, </if>
+            <if test="template.picId != null"> pic_id=#{template.picId}, </if>
+            <if test="template.idCard != null"> id_card=#{template.idCard}, </if>
+            <if test="template.cardEndtime != null"> card_endtime=#{template.cardEndtime}, </if>
+            <if test="template.cardAddress != null"> card_address=#{template.cardAddress}, </if>
+            <if test="template.innerPicid != null"> inner_picId=#{template.innerPicid}, </if>
+            <if test="template.innerPic != null"> inner_pic=#{template.innerPic}, </if>
+            <if test="template.innerName != null"> inner_name=#{template.innerName}, </if>
+            <if test="template.innerArea != null"> inner_area=#{template.innerArea}, </if>
+            <if test="template.innerIntroduce != null"> inner_introduce=#{template.innerIntroduce}, </if>
+            <if test="template.agree != null"> agree=#{template.agree}, </if>
+            <if test="template.credit != null"> credit=#{template.credit}, </if>
+            <if test="template.clintip != null"> clintIp=#{template.clintip}, </if>
+        </set>
+		<where>
+            <if test="condition.id != null"> and id=#{condition.id}</if>
+            <if test="condition.type != null"> and type=#{condition.type}</if>
+            <if test="condition.name != null"> and name=#{condition.name}</if>
+            <if test="condition.cardNumber != null"> and card_number=#{condition.cardNumber}</if>
+            <if test="condition.code != null"> and code=#{condition.code}</if>
+            <if test="condition.sex != null"> and sex=#{condition.sex}</if>
+            <if test="condition.account != null"> and account=#{condition.account}</if>
+            <if test="condition.pwd != null"> and pwd=#{condition.pwd}</if>
+            <if test="condition.payables != null"> and payables=#{condition.payables}</if>
+            <if test="condition.vipLevelId != null"> and vip_level_id=#{condition.vipLevelId}</if>
+            <if test="condition.vipLevelName != null"> and vip_level_name=#{condition.vipLevelName}</if>
+            <if test="condition.credits != null"> and credits=#{condition.credits}</if>
+            <if test="condition.companyName != null"> and company_name=#{condition.companyName}</if>
+            <if test="condition.companyAddress != null"> and company_address=#{condition.companyAddress}</if>
+            <if test="condition.linkman != null"> and linkman=#{condition.linkman}</if>
+            <if test="condition.mobile != null"> and mobile=#{condition.mobile}</if>
+            <if test="condition.telephone != null"> and telephone=#{condition.telephone}</if>
+            <if test="condition.email != null"> and email=#{condition.email}</if>
+            <if test="condition.areaIds != null"> and area_ids=#{condition.areaIds}</if>
+            <if test="condition.areaNames != null"> and area_names=#{condition.areaNames}</if>
+            <if test="condition.street != null"> and street=#{condition.street}</if>
+            <if test="condition.zipCode != null"> and zip_code=#{condition.zipCode}</if>
+            <if test="condition.remark != null"> and remark=#{condition.remark}</if>
+            <if test="condition.creatorId != null"> and creator_id=#{condition.creatorId}</if>
+            <if test="condition.creatorName != null"> and creator_name=#{condition.creatorName}</if>
+            <if test="condition.createTime != null"> and create_time=#{condition.createTime}</if>
+            <if test="condition.modifierId != null"> and modifier_id=#{condition.modifierId}</if>
+            <if test="condition.modifierName != null"> and modifier_name=#{condition.modifierName}</if>
+            <if test="condition.modifyTime != null"> and modify_time=#{condition.modifyTime}</if>
+            <if test="condition.state != null"> and state=#{condition.state}</if>
+            <if test="condition.warehouseId != null"> and warehouse_Id=#{condition.warehouseId}</if>
+            <if test="condition.warehouseName != null"> and warehouse_Name=#{condition.warehouseName}</if>
+            <if test="condition.maritalstatus != null"> and maritalstatus=#{condition.maritalstatus}</if>
+            <if test="condition.schooling != null"> and schooling=#{condition.schooling}</if>
+            <if test="condition.salary != null"> and salary=#{condition.salary}</if>
+            <if test="condition.isPinlessmobile != null"> and is_pinlessmobile=#{condition.isPinlessmobile}</if>
+            <if test="condition.isPinlessemail != null"> and is_pinlessemail=#{condition.isPinlessemail}</if>
+            <if test="condition.pic != null"> and pic=#{condition.pic}</if>
+            <if test="condition.picId != null"> and pic_id=#{condition.picId}</if>
+            <if test="condition.idCard != null"> and id_card=#{condition.idCard}</if>
+            <if test="condition.cardEndtime != null"> and card_endtime=#{condition.cardEndtime}</if>
+            <if test="condition.cardAddress != null"> and card_address=#{condition.cardAddress}</if>
+            <if test="condition.innerPicid != null"> and inner_picId=#{condition.innerPicid}</if>
+            <if test="condition.innerPic != null"> and inner_pic=#{condition.innerPic}</if>
+            <if test="condition.innerName != null"> and inner_name=#{condition.innerName}</if>
+            <if test="condition.innerArea != null"> and inner_area=#{condition.innerArea}</if>
+            <if test="condition.innerIntroduce != null"> and inner_introduce=#{condition.innerIntroduce}</if>
+            <if test="condition.agree != null"> and agree=#{condition.agree}</if>
+            <if test="condition.credit != null"> and credit=#{condition.credit}</if>
+            <if test="condition.clintip != null"> and clintIp=#{condition.clintip}</if>
+        </where>
+	</update>
+
+	<select id="select" parameterType="java.util.Map" resultMap="result">
+		<include refid="select_all_column" />
+		from customer 
+		where id=#{id}
+		<if test="isLock"> for update </if>
+	</select>
+
+	<select id="selectListByIdList" parameterType="java.util.Map" resultMap="result">
+		<include refid="select_all_column" />
+		from customer
+		<where>
+			<if test="idList != null">
+			id in
+			<foreach item="item" index="index" collection="idList" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+			</if>
+		</where>
+		<if test="isLock"> for update </if>
+	</select>
+
+	<select id="selectEOByEO" parameterType="java.util.Map" resultMap="result">
+		<include refid="select_all_column" />
+		from customer
+		<include refid="where_all" />
+	</select>
+	
+	<sql id="select_all_column">
+		select ID
+            ,type
+            ,name
+            ,card_number
+            ,code
+            ,sex
+            ,account
+            ,pwd
+            ,payables
+            ,vip_level_id
+            ,vip_level_name
+            ,credits
+            ,company_name
+            ,company_address
+            ,linkman
+            ,mobile
+            ,telephone
+            ,email
+            ,area_ids
+            ,area_names
+            ,street
+            ,zip_code
+            ,remark
+            ,creator_id
+            ,creator_name
+            ,create_time
+            ,modifier_id
+            ,modifier_name
+            ,modify_time
+            ,state
+            ,warehouse_Id
+            ,warehouse_Name
+            ,maritalstatus
+            ,schooling
+            ,salary
+            ,is_pinlessmobile
+            ,is_pinlessemail
+            ,pic
+            ,pic_id
+            ,id_card
+            ,card_endtime
+            ,card_address
+            ,inner_picId
+            ,inner_pic
+            ,inner_name
+            ,inner_area
+            ,inner_introduce
+            ,agree
+            ,credit
+            ,clintIp
+	</sql>
+
+	<sql id="where_all">
+		<where>
+            <include refid="condition_all" />
+		</where>
+	</sql>
+
+    <sql id="condition_all">
+        <if test="condition.id != null and condition.id != ''"> and id=#{condition.id} </if>
+        <if test="condition.type != null and condition.type != ''"> and type=#{condition.type} </if>
+        <if test="condition.name != null and condition.name != ''"> and name=#{condition.name} </if>
+        <if test="condition.cardNumber != null and condition.cardNumber != ''"> and card_number=#{condition.cardNumber} </if>
+        <if test="condition.code != null and condition.code != ''"> and code=#{condition.code} </if>
+        <if test="condition.sex != null and condition.sex != ''"> and sex=#{condition.sex} </if>
+        <if test="condition.account != null and condition.account != ''"> and account=#{condition.account} </if>
+        <if test="condition.pwd != null and condition.pwd != ''"> and pwd=#{condition.pwd} </if>
+        <if test="condition.payables != null"> and payables=#{condition.payables} </if>
+        <if test="condition.vipLevelId != null and condition.vipLevelId != ''"> and vip_level_id=#{condition.vipLevelId} </if>
+        <if test="condition.vipLevelName != null and condition.vipLevelName != ''"> and vip_level_name=#{condition.vipLevelName} </if>
+        <if test="condition.credits != null"> and credits=#{condition.credits} </if>
+        <if test="condition.companyName != null and condition.companyName != ''"> and company_name=#{condition.companyName} </if>
+        <if test="condition.companyAddress != null and condition.companyAddress != ''"> and company_address=#{condition.companyAddress} </if>
+        <if test="condition.linkman != null and condition.linkman != ''"> and linkman=#{condition.linkman} </if>
+        <if test="condition.mobile != null and condition.mobile != ''"> and mobile=#{condition.mobile} </if>
+        <if test="condition.telephone != null and condition.telephone != ''"> and telephone=#{condition.telephone} </if>
+        <if test="condition.email != null and condition.email != ''"> and email=#{condition.email} </if>
+        <if test="condition.areaIds != null and condition.areaIds != ''"> and area_ids=#{condition.areaIds} </if>
+        <if test="condition.areaNames != null and condition.areaNames != ''"> and area_names=#{condition.areaNames} </if>
+        <if test="condition.street != null and condition.street != ''"> and street=#{condition.street} </if>
+        <if test="condition.zipCode != null and condition.zipCode != ''"> and zip_code=#{condition.zipCode} </if>
+        <if test="condition.remark != null and condition.remark != ''"> and remark=#{condition.remark} </if>
+        <if test="condition.creatorId != null and condition.creatorId != ''"> and creator_id=#{condition.creatorId} </if>
+        <if test="condition.creatorName != null and condition.creatorName != ''"> and creator_name=#{condition.creatorName} </if>
+        <if test="condition.createTime != null"> and create_time=#{condition.createTime} </if>
+        <if test="condition.modifierId != null and condition.modifierId != ''"> and modifier_id=#{condition.modifierId} </if>
+        <if test="condition.modifierName != null and condition.modifierName != ''"> and modifier_name=#{condition.modifierName} </if>
+        <if test="condition.modifyTime != null"> and modify_time=#{condition.modifyTime} </if>
+        <if test="condition.state != null and condition.state != ''"> and state=#{condition.state} </if>
+        <if test="condition.warehouseId != null and condition.warehouseId != ''"> and warehouse_Id=#{condition.warehouseId} </if>
+        <if test="condition.warehouseName != null and condition.warehouseName != ''"> and warehouse_Name=#{condition.warehouseName} </if>
+        <if test="condition.maritalstatus != null and condition.maritalstatus != ''"> and maritalstatus=#{condition.maritalstatus} </if>
+        <if test="condition.schooling != null and condition.schooling != ''"> and schooling=#{condition.schooling} </if>
+        <if test="condition.salary != null and condition.salary != ''"> and salary=#{condition.salary} </if>
+        <if test="condition.isPinlessmobile != null and condition.isPinlessmobile != ''"> and is_pinlessmobile=#{condition.isPinlessmobile} </if>
+        <if test="condition.isPinlessemail != null and condition.isPinlessemail != ''"> and is_pinlessemail=#{condition.isPinlessemail} </if>
+        <if test="condition.pic != null and condition.pic != ''"> and pic=#{condition.pic} </if>
+        <if test="condition.picId != null and condition.picId != ''"> and pic_id=#{condition.picId} </if>
+        <if test="condition.idCard != null and condition.idCard != ''"> and id_card=#{condition.idCard} </if>
+        <if test="condition.cardEndtime != null"> and card_endtime=#{condition.cardEndtime} </if>
+        <if test="condition.cardAddress != null and condition.cardAddress != ''"> and card_address=#{condition.cardAddress} </if>
+        <if test="condition.innerPicid != null and condition.innerPicid != ''"> and inner_picId=#{condition.innerPicid} </if>
+        <if test="condition.innerPic != null and condition.innerPic != ''"> and inner_pic=#{condition.innerPic} </if>
+        <if test="condition.innerName != null and condition.innerName != ''"> and inner_name=#{condition.innerName} </if>
+        <if test="condition.innerArea != null and condition.innerArea != ''"> and inner_area=#{condition.innerArea} </if>
+        <if test="condition.innerIntroduce != null and condition.innerIntroduce != ''"> and inner_introduce=#{condition.innerIntroduce} </if>
+        <if test="condition.agree != null and condition.agree != ''"> and agree=#{condition.agree} </if>
+        <if test="condition.credit != null"> and credit=#{condition.credit} </if>
+        <if test="condition.clintip != null and condition.clintip != ''"> and clintIp=#{condition.clintip} </if>
+    </sql>
+
+	<delete id="delete" parameterType="com.maiya.shopcloud.account.customer.CustomerDO">
+		delete from customer
+		where id=#{id}
+	</delete>
+
+</mapper>

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BaseCustomerAddressDAO">
+	<resultMap id="result" type="com.maiya.shopcloud.account.customeraddress.CustomerAddressDO">
+		<id property="id" column="id" />
+		<result property="customerId" column="customer_id" />
+		<result property="name" column="name" />
+		<result property="mobile" column="mobile" />
+		<result property="address" column="address" />
+		<result property="zipCode" column="zip_code" />
+		<result property="isDefault" column="is_default" />
+		<result property="remark" column="remark" />
+		<result property="street" column="street" />
+		<result property="arearegion" column="areaRegion" />
+		<result property="phone" column="phone" />
+		<result property="whetherOrdrer" column="whether_ordrer" />
+	</resultMap>
+	
+	<sql id="insert_columns">
+            <if test="customerId != null">customer_id</if>
+            <if test="name != null">name</if>
+            <if test="mobile != null">mobile</if>
+            <if test="address != null">address</if>
+            <if test="zipCode != null">zip_code</if>
+            <if test="isDefault != null">is_default</if>
+            <if test="remark != null">remark</if>
+            <if test="street != null">street</if>
+            <if test="arearegion != null">areaRegion</if>
+            <if test="phone != null">phone</if>
+            <if test="whetherOrdrer != null">whether_ordrer</if>
+	</sql>
+	
+	<sql id="insert_all_columns">
+			customer_id
+            ,name
+            ,mobile
+            ,address
+            ,zip_code
+            ,is_default
+            ,remark
+            ,street
+            ,areaRegion
+            ,phone
+            ,whether_ordrer
+	</sql>
+
+	<sql id="insert_values">
+          <if test="customerId != null">#{customerId}</if>
+          <if test="name != null">#{name}</if>
+          <if test="mobile != null">#{mobile}</if>
+          <if test="address != null">#{address}</if>
+          <if test="zipCode != null">#{zipCode}</if>
+          <if test="isDefault != null">#{isDefault}</if>
+          <if test="remark != null">#{remark}</if>
+          <if test="street != null">#{street}</if>
+          <if test="arearegion != null">#{arearegion}</if>
+          <if test="phone != null">#{phone}</if>
+          <if test="whetherOrdrer != null">#{whetherOrdrer}</if>
+	</sql>
+
+    <sql id="batch_insert_values">
+            #{item.customerId}
+            ,#{item.name}
+            ,#{item.mobile}
+            ,#{item.address}
+            ,#{item.zipCode}
+            ,#{item.isDefault}
+            ,#{item.remark}
+            ,#{item.street}
+            ,#{item.arearegion}
+            ,#{item.phone}
+            ,#{item.whetherOrdrer}
+    </sql>
+    
+    <sql id="insert_all_values">
+            #{customerId}
+            ,#{name}
+            ,#{mobile}
+            ,#{address}
+            ,#{zipCode}
+            ,#{isDefault}
+            ,#{remark}
+            ,#{street}
+            ,#{arearegion}
+            ,#{phone}
+            ,#{whetherOrdrer}
+    </sql>
+	
+	<insert id="insertHasId" parameterType="com.maiya.shopcloud.account.customeraddress.CustomerAddressDO" useGeneratedKeys="false">
+		insert into customer_address(
+			id,
+			<include refid="insert_columns" />
+		)values(
+			#{id},
+			<include refid="insert_values" />
+		)
+	</insert>
+	
+	<insert id="batchInsertHasId"  parameterType="java.util.List" useGeneratedKeys="false">
+		insert into customer_address(
+			id,
+			<include refid="insert_all_columns" />
+		)values
+		<foreach collection="list" item="item" index="index" separator=",">
+		(
+		    #{item.id},
+            <include refid="batch_insert_values" />
+		)
+		</foreach>
+	</insert>
+
+	<insert id="insert" parameterType="com.maiya.shopcloud.account.customeraddress.CustomerAddressDO"  useGeneratedKeys="true" keyProperty="id">
+		insert into customer_address(
+			<include refid="insert_all_columns" />
+		)values(
+			<include refid="insert_all_values" />
+		)
+	</insert>
+
+	<insert id="batchInsert" parameterType="java.util.List" useGeneratedKeys="true">
+		insert into customer_address(
+			<include refid="insert_all_columns" />
+		)values
+		<foreach collection="list" item="item" index="index" separator=",">
+		(
+            <include refid="batch_insert_values" />
+		)
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.maiya.shopcloud.account.customeraddress.CustomerAddressDO">
+        update customer_address
+        <set>
+            <if test="customerId != null"> customer_id=#{customerId}, </if>
+            <if test="name != null"> name=#{name}, </if>
+            <if test="mobile != null"> mobile=#{mobile}, </if>
+            <if test="address != null"> address=#{address}, </if>
+            <if test="zipCode != null"> zip_code=#{zipCode}, </if>
+            <if test="isDefault != null"> is_default=#{isDefault}, </if>
+            <if test="remark != null"> remark=#{remark}, </if>
+            <if test="street != null"> street=#{street}, </if>
+            <if test="arearegion != null"> areaRegion=#{arearegion}, </if>
+            <if test="phone != null"> phone=#{phone}, </if>
+            <if test="whetherOrdrer != null"> whether_ordrer=#{whetherOrdrer}, </if>
+        </set>
+		where id=#{id}
+	</update>
+
+	<update id="updateByField" parameterType="java.util.HashMap">
+        update customer_address
+        <set>
+            <if test="template.customerId != null"> customer_id=#{template.customerId}, </if>
+            <if test="template.name != null"> name=#{template.name}, </if>
+            <if test="template.mobile != null"> mobile=#{template.mobile}, </if>
+            <if test="template.address != null"> address=#{template.address}, </if>
+            <if test="template.zipCode != null"> zip_code=#{template.zipCode}, </if>
+            <if test="template.isDefault != null"> is_default=#{template.isDefault}, </if>
+            <if test="template.remark != null"> remark=#{template.remark}, </if>
+            <if test="template.street != null"> street=#{template.street}, </if>
+            <if test="template.arearegion != null"> areaRegion=#{template.arearegion}, </if>
+            <if test="template.phone != null"> phone=#{template.phone}, </if>
+            <if test="template.whetherOrdrer != null"> whether_ordrer=#{template.whetherOrdrer}, </if>
+        </set>
+		<where>
+            <if test="condition.id != null"> and id=#{condition.id}</if>
+            <if test="condition.customerId != null"> and customer_id=#{condition.customerId}</if>
+            <if test="condition.name != null"> and name=#{condition.name}</if>
+            <if test="condition.mobile != null"> and mobile=#{condition.mobile}</if>
+            <if test="condition.address != null"> and address=#{condition.address}</if>
+            <if test="condition.zipCode != null"> and zip_code=#{condition.zipCode}</if>
+            <if test="condition.isDefault != null"> and is_default=#{condition.isDefault}</if>
+            <if test="condition.remark != null"> and remark=#{condition.remark}</if>
+            <if test="condition.street != null"> and street=#{condition.street}</if>
+            <if test="condition.arearegion != null"> and areaRegion=#{condition.arearegion}</if>
+            <if test="condition.phone != null"> and phone=#{condition.phone}</if>
+            <if test="condition.whetherOrdrer != null"> and whether_ordrer=#{condition.whetherOrdrer}</if>
+        </where>
+	</update>
+
+	<select id="select" parameterType="java.util.Map" resultMap="result">
+		<include refid="select_all_column" />
+		from customer_address 
+		where id=#{id}
+		<if test="isLock"> for update </if>
+	</select>
+
+	<select id="selectListByIdList" parameterType="java.util.Map" resultMap="result">
+		<include refid="select_all_column" />
+		from customer_address
+		<where>
+			<if test="idList != null">
+			id in
+			<foreach item="item" index="index" collection="idList" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+			</if>
+		</where>
+		<if test="isLock"> for update </if>
+	</select>
+
+	<select id="selectEOByEO" parameterType="java.util.Map" resultMap="result">
+		<include refid="select_all_column" />
+		from customer_address
+		<include refid="where_all" />
+	</select>
+	
+	<sql id="select_all_column">
+		select ID
+            ,customer_id
+            ,name
+            ,mobile
+            ,address
+            ,zip_code
+            ,is_default
+            ,remark
+            ,street
+            ,areaRegion
+            ,phone
+            ,whether_ordrer
+	</sql>
+
+	<sql id="where_all">
+		<where>
+            <include refid="condition_all" />
+		</where>
+	</sql>
+
+    <sql id="condition_all">
+        <if test="condition.id != null and condition.id != ''"> and id=#{condition.id} </if>
+        <if test="condition.customerId != null and condition.customerId != ''"> and customer_id=#{condition.customerId} </if>
+        <if test="condition.name != null and condition.name != ''"> and name=#{condition.name} </if>
+        <if test="condition.mobile != null and condition.mobile != ''"> and mobile=#{condition.mobile} </if>
+        <if test="condition.address != null and condition.address != ''"> and address=#{condition.address} </if>
+        <if test="condition.zipCode != null and condition.zipCode != ''"> and zip_code=#{condition.zipCode} </if>
+        <if test="condition.isDefault != null and condition.isDefault != ''"> and is_default=#{condition.isDefault} </if>
+        <if test="condition.remark != null and condition.remark != ''"> and remark=#{condition.remark} </if>
+        <if test="condition.street != null and condition.street != ''"> and street=#{condition.street} </if>
+        <if test="condition.arearegion != null and condition.arearegion != ''"> and areaRegion=#{condition.arearegion} </if>
+        <if test="condition.phone != null and condition.phone != ''"> and phone=#{condition.phone} </if>
+        <if test="condition.whetherOrdrer != null and condition.whetherOrdrer != ''"> and whether_ordrer=#{condition.whetherOrdrer} </if>
+    </sql>
+
+	<delete id="delete" parameterType="com.maiya.shopcloud.account.customeraddress.CustomerAddressDO">
+		delete from customer_address
+		where id=#{id}
+	</delete>
+
+</mapper>
