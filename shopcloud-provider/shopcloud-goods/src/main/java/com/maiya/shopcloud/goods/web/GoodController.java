@@ -1,14 +1,11 @@
 package com.maiya.shopcloud.goods.web;
 
-import com.github.pagehelper.PageInfo;
 import com.maiya.shopcloud.base.wrapper.WrapMapper;
 import com.maiya.shopcloud.base.wrapper.Wrapper;
 import com.maiya.shopcloud.goods.dao.good.GoodDO;
 import com.maiya.shopcloud.goods.service.GoodService;
-import com.maiya.shopcloud.goods.service.impl.GoodServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 

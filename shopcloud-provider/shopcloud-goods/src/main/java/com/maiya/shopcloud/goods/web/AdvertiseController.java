@@ -21,7 +21,6 @@ import java.util.List;
 /**
  * 商品服务
  */
-@CrossOrigin
 @RestController
 @RequestMapping(value = "/advertise", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Api(value = "Web - AdvertiseController", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
