@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BaseCustomerDAO">
-	<resultMap id="result" type="com.maiya.shopcloud.account.customer.CustomerDO">
+	<resultMap id="result" type="com.maiya.shopcloud.account.dao.customer.CustomerDO">
 		<id property="id" column="id" />
 		<result property="type" column="type" />
 		<result property="name" column="name" />
@@ -314,7 +314,7 @@
             ,#{clintip}
     </sql>
 	
-	<insert id="insertHasId" parameterType="com.maiya.shopcloud.account.customer.CustomerDO" useGeneratedKeys="false">
+	<insert id="insertHasId" parameterType="com.maiya.shopcloud.account.dao.customer.CustomerDO" useGeneratedKeys="false">
 		insert into customer(
 			id,
 			<include refid="insert_columns" />
@@ -337,7 +337,7 @@
 		</foreach>
 	</insert>
 
-	<insert id="insert" parameterType="com.maiya.shopcloud.account.customer.CustomerDO"  useGeneratedKeys="true" keyProperty="id">
+	<insert id="insert" parameterType="com.maiya.shopcloud.account.dao.customer.CustomerDO"  useGeneratedKeys="true" keyProperty="id">
 		insert into customer(
 			<include refid="insert_all_columns" />
 		)values(
@@ -356,7 +356,7 @@
 		</foreach>
 	</insert>
 
-	<update id="update" parameterType="com.maiya.shopcloud.account.customer.CustomerDO">
+	<update id="update" parameterType="com.maiya.shopcloud.account.dao.customer.CustomerDO">
         update customer
         <set>
             <if test="type != null"> type=#{type}, </if>
@@ -658,7 +658,7 @@
         <if test="condition.clintip != null and condition.clintip != ''"> and clintIp=#{condition.clintip} </if>
     </sql>
 
-	<delete id="delete" parameterType="com.maiya.shopcloud.account.customer.CustomerDO">
+	<delete id="delete" parameterType="com.maiya.shopcloud.account.dao.customer.CustomerDO">
 		delete from customer
 		where id=#{id}
 	</delete>

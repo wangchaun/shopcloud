@@ -9,10 +9,4 @@
             <property name="dialect" value="mysql"/>
         </plugin>
     </plugins>
-    <mappers>
-                <mapper resource="META-INF/mybatis/account/BaseCustomer.xml"/>
-        <mapper resource="META-INF/mybatis/account/Customer.xml"/>
-                <mapper resource="META-INF/mybatis/account/BaseCustomerAddress.xml"/>
-        <mapper resource="META-INF/mybatis/account/CustomerAddress.xml"/>
-            </mappers>
 </configuration>

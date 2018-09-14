@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BaseCustomerAddressDAO">
-	<resultMap id="result" type="com.maiya.shopcloud.account.customeraddress.CustomerAddressDO">
+	<resultMap id="result" type="com.maiya.shopcloud.account.dao.customeraddress.CustomerAddressDO">
 		<id property="id" column="id" />
 		<result property="customerId" column="customer_id" />
 		<result property="name" column="name" />
@@ -86,7 +86,7 @@
             ,#{whetherOrdrer}
     </sql>
 	
-	<insert id="insertHasId" parameterType="com.maiya.shopcloud.account.customeraddress.CustomerAddressDO" useGeneratedKeys="false">
+	<insert id="insertHasId" parameterType="com.maiya.shopcloud.account.dao.customeraddress.CustomerAddressDO" useGeneratedKeys="false">
 		insert into customer_address(
 			id,
 			<include refid="insert_columns" />
@@ -109,7 +109,7 @@
 		</foreach>
 	</insert>
 
-	<insert id="insert" parameterType="com.maiya.shopcloud.account.customeraddress.CustomerAddressDO"  useGeneratedKeys="true" keyProperty="id">
+	<insert id="insert" parameterType="com.maiya.shopcloud.account.dao.customeraddress.CustomerAddressDO"  useGeneratedKeys="true" keyProperty="id">
 		insert into customer_address(
 			<include refid="insert_all_columns" />
 		)values(
@@ -128,7 +128,7 @@
 		</foreach>
 	</insert>
 
-	<update id="update" parameterType="com.maiya.shopcloud.account.customeraddress.CustomerAddressDO">
+	<update id="update" parameterType="com.maiya.shopcloud.account.dao.customeraddress.CustomerAddressDO">
         update customer_address
         <set>
             <if test="customerId != null"> customer_id=#{customerId}, </if>
@@ -240,7 +240,7 @@
         <if test="condition.whetherOrdrer != null and condition.whetherOrdrer != ''"> and whether_ordrer=#{condition.whetherOrdrer} </if>
     </sql>
 
-	<delete id="delete" parameterType="com.maiya.shopcloud.account.customeraddress.CustomerAddressDO">
+	<delete id="delete" parameterType="com.maiya.shopcloud.account.dao.customeraddress.CustomerAddressDO">
 		delete from customer_address
 		where id=#{id}
 	</delete>
