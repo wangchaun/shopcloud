@@ -4,9 +4,15 @@
     <properties>
         <property name="dialect" value="mysql" />
     </properties>
+    <settings>
+        <setting name="logPrefix" value="dao."/>
+    </settings>
     <plugins>
         <plugin interceptor="com.maiya.shopcloud.base.mybatis.PageInterceptor">
             <property name="dialect" value="mysql"/>
         </plugin>
     </plugins>
+
+
+
 </configuration>

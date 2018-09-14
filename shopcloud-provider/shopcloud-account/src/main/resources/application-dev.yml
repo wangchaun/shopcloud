@@ -31,3 +31,8 @@ spring:
     url: jdbc:mysql://118.89.173.110:3306/sinoeshop?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
     password: MyNewPass4!
+
+    #配置应用名字 不配置则默认：bootstrap
+    #log目录、注册到eureka的名字
+  application:
+    name: shopcloud-account
