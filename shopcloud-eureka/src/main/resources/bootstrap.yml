@@ -16,5 +16,5 @@ eureka:
   client:
     registerWithEureka: false #表示是否将自己注册到 Eureka Server
     fetchRegistry: false #表示是否从Eureka Server获取注册信息，单点则设置false,集群设置为true，需要同步节点数据
-    serviceUrl: #查询服务和注册服务都需要这个地址 多个地址用逗号,隔开
+    serviceUrl: #查询服务和注册服务都需要这个地址逗号隔开
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka

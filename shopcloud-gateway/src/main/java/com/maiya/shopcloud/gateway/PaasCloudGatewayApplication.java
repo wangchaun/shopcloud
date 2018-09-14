@@ -27,10 +27,7 @@ import org.springframework.web.filter.CorsFilter;
  * 网关
  */
 @SpringBootApplication
-@EnableDiscoveryClient
 @EnableZuulProxy
-@EnableOAuth2Sso
-@EnableHystrix
 @EnableSwaggerButler
 public class PaasCloudGatewayApplication {
 
@@ -38,7 +35,7 @@ public class PaasCloudGatewayApplication {
 		SpringApplication.run(PaasCloudGatewayApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	public CorsFilter corsFilter() {
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		final CorsConfiguration config = new CorsConfiguration();
@@ -61,5 +58,5 @@ public class PaasCloudGatewayApplication {
 		config.addAllowedMethod("PATCH");
 		source.registerCorsConfiguration("/**", config);
 		return new CorsFilter(source);
-	}
+	}*/
 }
