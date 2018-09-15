@@ -46,12 +46,10 @@
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.0.0</version>
-
                 <configuration>
-                    <serverId>docker-hub</serverId>
-                    <imageName>shopcloud/${project.artifactId}:${project.version}</imageName>
+                    <imageName>registry.cn-qingdao.aliyuncs.com/shopcloud/${project.artifactId}:${project.version}</imageName>
                     <imageTags>
-                        <imageTag>2.0.0</imageTag>
+                        <imageTag>3.0.0</imageTag>
                         <imageTag>latest</imageTag>
                     </imageTags>
                     <baseImage>java</baseImage>
@@ -65,7 +63,7 @@
                         </resource>
                     </resources>
 
-                    <serverId>docker-hub</serverId>
+                    <serverId>aliyun</serverId>
                 </configuration>
             </plugin>
         </plugins>
