@@ -51,7 +51,7 @@
                     <serverId>docker-hub</serverId>
                     <imageName>shopcloud/${project.artifactId}:${project.version}</imageName>
                     <imageTags>
-                        <imageTag>1.0.0</imageTag>
+                        <imageTag>2.0.0</imageTag>
                         <imageTag>latest</imageTag>
                     </imageTags>
                     <baseImage>java</baseImage>
