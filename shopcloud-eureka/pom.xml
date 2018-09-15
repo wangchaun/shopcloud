@@ -47,34 +47,12 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.13</version>
 
-                <executions>
-                    <execution>
-                        <id>build-image</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>tag-image</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>tag</goal>
-                        </goals>
-                        <configuration>
-                            <image>${docker.repository}/${docker.registry.name}/${project.artifactId}:${project.version}</image>
-                            <newName>${docker.repository}/${docker.registry.name}/${project.artifactId}:${project.version}</newName>
-                        </configuration>
-                    </execution>
-                </executions>
-
                 <configuration>
                     <serverId>docker-hub</serverId>
-                    <registryUrl>${docker.repository}</registryUrl>
-                    <pushImage>true</pushImage>
-                    <imageName>${project.artifactId}</imageName>
+                    <imageName>${project.artifactId}:${project.version}</imageName>
                     <baseImage>java</baseImage>
                     <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>
@@ -82,6 +60,7 @@
                             <include>${project.build.finalName}.jar</include>
                         </resource>
                     </resources>
+
                     <serverId>docker-hub</serverId>
                 </configuration>
             </plugin>
