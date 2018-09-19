@@ -4,7 +4,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://root:root@discovery:8761/eureka/
+      defaultZone: http://root:root@123.207.121.33:8761/eureka/
   instance:
     instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
     prefer-ip-address: true # 表示将自己的IP注册到 Eureka Server ，若设置false，则表示注册微服务所在操作系统的hostname到Eureka Server
