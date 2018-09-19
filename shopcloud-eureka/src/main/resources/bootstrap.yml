@@ -12,7 +12,7 @@ eureka:
   server:
     enable-self-preservation: true
   instance:
-    hostname: 123.207.121.33
+    hostname: 127.0.0.1
   client:
     registerWithEureka: false #表示是否将自己注册到 Eureka Server
     fetchRegistry: false #表示是否从Eureka Server获取注册信息，单点则设置false,集群设置为true，需要同步节点数据
