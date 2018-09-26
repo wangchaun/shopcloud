@@ -85,10 +85,36 @@
     </dependencies>
 
     <build>
+        <finalName>${artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- 添加docker-maven插件 -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <imageName>registry.cn-qingdao.aliyuncs.com/shopcloud/${project.artifactId}:${project.version}</imageName>
+                    <imageTags>
+                        <imageTag>2.0.0</imageTag>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
+                    <baseImage>java</baseImage>
+                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+
+                    <serverId>aliyun</serverId>
+                </configuration>
             </plugin>
         </plugins>
     </build>

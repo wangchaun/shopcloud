@@ -15,8 +15,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <!-- 添加镜像仓库 -->
+        <docker.repository>https://hub.docker.com</docker.repository>
+        <docker.registry.name>shopcloud-eureka</docker.registry.name>
     </properties>
-
 
     <dependencies>
         <dependency>
@@ -43,11 +45,16 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.4.13</version>
+                <version>1.0.0</version>
                 <configuration>
-                    <imageName>${project.artifactId}:${project.version}</imageName>
+                    <imageName>registry.cn-qingdao.aliyuncs.com/shopcloud/${project.artifactId}:${project.version}</imageName>
+                    <imageTags>
+                        <imageTag>3.0.0</imageTag>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
                     <baseImage>java</baseImage>
                     <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>
@@ -55,6 +62,8 @@
                             <include>${project.build.finalName}.jar</include>
                         </resource>
                     </resources>
+
+                    <serverId>aliyun</serverId>
                 </configuration>
             </plugin>
         </plugins>
