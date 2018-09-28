@@ -51,23 +51,24 @@ public class GoodTypeServiceImpl implements GoodTypeService {
 
     public void getChildren(List<GoodTypeVo> goodTypeVoList)
     {
-        if ((goodTypeVoList != null) && (!goodTypeVoList.isEmpty()))
+        if ((goodTypeVoList != null) && (!goodTypeVoList.isEmpty())) {
             for (GoodTypeVo goodType : goodTypeVoList)
                 if (goodType != null) {
                     String parentId = goodType.getId();
                     Integer level = Integer.valueOf(goodType.getLevel().intValue() + 1);
 
-                    GoodTypeDO condition=new GoodTypeDO();
+                    GoodTypeDO condition = new GoodTypeDO();
                     condition.setParentId(parentId);
                     condition.setLevel(level);
 
-                    List<GoodTypeVo> children=this.getGoodTypeVoList(goodTypeDAO.selectListByEO(condition));
+                    List<GoodTypeVo> children = this.getGoodTypeVoList(goodTypeDAO.selectListByEO(condition));
 
                     if ((children != null) && (!children.isEmpty())) {
                         goodType.setChildren(children);
                         getChildren(children);
                     }
                 }
+        }
     }
 
 
