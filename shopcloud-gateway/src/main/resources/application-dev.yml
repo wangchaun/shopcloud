@@ -1,3 +1,15 @@
+server:
+  port: 7979
+
+spring:
+  application:
+    name: shopcloud-gateway
+
+swagger:
+  title: shopcloud-gateway
+  description: shopcloud-gateway
+
+
 eureka:
   client:
     serviceUrl:
