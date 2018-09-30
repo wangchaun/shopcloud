@@ -1,15 +1,3 @@
-server:
-  port: 8761
-
 spring:
   profiles:
     active: dev
-  application:
-    name: shopcloud-eureka
-
-security:
-  basic:
-    enabled: true #开启基于HTTP basic的认证
-  user:
-    name: root
-    password: root

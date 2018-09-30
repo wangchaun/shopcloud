@@ -1,12 +1,9 @@
+server:
+  port: 8761
+
 spring:
-  cloud:
-    inetutils:
-      ignoredInterfaces:
-        - docker0
-        - veth.*
-        - VM.*
-      preferredNetworks:
-        - 192.168
+  application:
+    name: shopcloud-eureka
 
 eureka:
   server:
@@ -18,3 +15,10 @@ eureka:
     fetchRegistry: false #表示是否从Eureka Server获取注册信息，单点则设置false,集群设置为true，需要同步节点数据
     serviceUrl: #查询服务和注册服务都需要这个地址逗号隔开
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+
+security:
+  basic:
+    enabled: true #开启基于HTTP basic的认证
+  user:
+    name: root
+    password: root
