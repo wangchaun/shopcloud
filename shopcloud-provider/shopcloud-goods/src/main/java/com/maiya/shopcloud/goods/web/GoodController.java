@@ -25,12 +25,31 @@ public class GoodController {
 
     /**
      * 查询商品列表
-      * @return
+     *
+     * @return
      */
     @GetMapping(value = "/queryGoodList")
     @ApiOperation(httpMethod = "GET", value = "查询商品列表")
     public Wrapper queryGoodListWithPage() {
-        List<GoodDO> goodDOList=goodService.selectByExample(new GoodDO());
+
+        List<GoodDO> goodDOList = goodService.selectByExample(new GoodDO());
+
         return WrapMapper.ok(goodDOList);
     }
+
+    /**
+     * 查询热卖商品列表
+     *
+     * @return
+     */
+    @GetMapping(value = "/queryPopulardHotGood")
+    @ApiOperation(httpMethod = "GET", value = "查询热卖商品列表")
+    public Wrapper queryPopulardHotGood() {
+
+        List<GoodDO> goodDOList = goodService.queryPopulardHotGood();
+
+        return WrapMapper.ok(goodDOList);
+    }
+
+
 }
