@@ -1,8 +1,9 @@
-package com.maiya.shopcloud.account.util;
+package com.maiya.shopcloud.account.service;
 
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -10,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Random;
 
-public class RandomValidateUtil {
+@Service
+public class RandomValidateService {
 
 
     public static final String RANDOMCODEKEY= "RANDOMVALIDATECODEKEY";//放到session中的key
@@ -24,7 +27,7 @@ public class RandomValidateUtil {
     private int lineSize = 45;// 干扰线数量
     private int stringNum = 4;// 随机产生字符数量
 
-    private static final Logger logger = LoggerFactory.getLogger(RandomValidateUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(RandomValidateService.class);
 
     private Random random = new Random();
 
@@ -54,6 +57,8 @@ public class RandomValidateUtil {
      */
     public void getRandcode(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
+        String rs = (String)session.getAttribute(RANDOMCODEKEY);
+        System.out.println(rs);
         // BufferedImage类是具有缓冲区的Image类,Image类是用于描述图像信息的类
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_BGR);
         Graphics g = image.getGraphics();// 产生Image对象的Graphics对象,改对象可以在图像上进行各种绘制操作
@@ -79,6 +84,31 @@ public class RandomValidateUtil {
             ImageIO.write(image, "JPEG", response.getOutputStream());
         } catch (Exception e) {
             logger.error("将内存中的图片通过流动形式输出到客户端失败>>>>   ", e);
+        }
+
+    }
+
+    /**
+     *
+     * 功能描述: 校验验证码
+     *
+     * @param: 
+     * @return: 
+     * @auther: siming.wang
+     * @date: 18/10/10 下午2:49
+     */
+    public void checkValidateKey(String key, HttpServletRequest request, HttpServletResponse response){
+        HttpSession session = request.getSession();
+        String rs = (String)session.getAttribute(RANDOMCODEKEY);
+        logger.info("key : {}, RANDOMCODEKEY: {}", key , rs);
+        boolean flag = false;
+        if(rs != null && rs != "" && rs.equals(key)){
+            flag = true;
+        }
+        try {
+            response.getWriter().write(flag + "");
+        } catch (IOException e) {
+            logger.error("error occur when response success flag!", e);
         }
 
     }
