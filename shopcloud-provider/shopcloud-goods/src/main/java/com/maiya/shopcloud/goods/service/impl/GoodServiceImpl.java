@@ -104,4 +104,17 @@ public class GoodServiceImpl  implements GoodService {
     public List<GoodDO> selectByExampleAndRowBounds(Object example, RowBounds rowBounds) {
         return null;
     }
+
+    @Override
+    public List<GoodDO> queryPopulardHotGood() {
+
+        GoodDO goodDOCnd=new GoodDO();
+        goodDOCnd.setProperty("1");
+        goodDOCnd.setIsInventory("0");
+        goodDOCnd.setIndexShow("1");
+        goodDOCnd.setState("s");
+
+        return goodDAO.selectListByEO(goodDOCnd);
+
+    }
 }
