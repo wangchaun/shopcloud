@@ -21,7 +21,6 @@ import java.util.List;
 /**
  * 用户服务
  */
-@CrossOrigin(origins = {"http://localhost:8080"}, allowCredentials = "true")
 @RestController
 @RequestMapping(value = "/account", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Api(value = "Web - CustomerController", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
