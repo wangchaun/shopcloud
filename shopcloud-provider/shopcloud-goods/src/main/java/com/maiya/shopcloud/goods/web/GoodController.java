@@ -32,10 +32,8 @@ public class GoodController {
      */
     @GetMapping(value = "/queryGoodList")
     @ApiOperation(httpMethod = "GET", value = "查询商品列表")
-    public Wrapper queryGoodListWithPage(HttpServletRequest request, HttpServletResponse response) {
-
+    public Wrapper queryGoodListWithPage() {
         List<GoodDO> goodDOList = goodService.selectByExample(new GoodDO());
-        CookieUtil.addCookies(response, request.getCookies(), false);
         return WrapMapper.ok(goodDOList);
     }
 
@@ -49,7 +47,6 @@ public class GoodController {
     public Wrapper queryPopulardHotGood() {
 
         List<GoodDO> goodDOList = goodService.queryPopulardHotGood();
-
         return WrapMapper.ok(goodDOList);
     }
 
