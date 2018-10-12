@@ -1,6 +1,7 @@
 package com.maiya.shopcloud.account.service;
 
 
+import com.maiya.shopcloud.account.util.CookieUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -78,6 +79,7 @@ public class RandomValidateService {
         //将生成的随机字符串保存到session中
         session.removeAttribute(RANDOMCODEKEY);
         session.setAttribute(RANDOMCODEKEY, randomString);
+//        CookieUtil.addCookies(response, request.getCookies(), false);
         g.dispose();
         try {
             // 将内存中的图片通过流动形式输出到客户端

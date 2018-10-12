@@ -1,7 +1,9 @@
 package com.maiya.shopcloud.account.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import org.springframework.session.web.http.DefaultCookieSerializer;
 
 /**
  * @program: shopcloud-master
@@ -14,5 +16,14 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 //maxInactiveIntervalInSeconds session超时时间,单位秒
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 600)
 public class RedisSessionConfig {
+
+    @Bean
+    public DefaultCookieSerializer defaultCookieSerializer(){
+        DefaultCookieSerializer defaultCookieSerializer = new DefaultCookieSerializer();
+        defaultCookieSerializer.setUseHttpOnlyCookie(false);
+        defaultCookieSerializer.setDomainName("localhost:8081");
+        defaultCookieSerializer().setCookiePath("/");
+        return defaultCookieSerializer;
+    }
 
 }

@@ -10,6 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -30,10 +32,10 @@ public class GoodController {
      */
     @GetMapping(value = "/queryGoodList")
     @ApiOperation(httpMethod = "GET", value = "查询商品列表")
-    public Wrapper queryGoodListWithPage() {
+    public Wrapper queryGoodListWithPage(HttpServletRequest request, HttpServletResponse response) {
 
         List<GoodDO> goodDOList = goodService.selectByExample(new GoodDO());
-
+        CookieUtil.addCookies(response, request.getCookies(), false);
         return WrapMapper.ok(goodDOList);
     }
 
