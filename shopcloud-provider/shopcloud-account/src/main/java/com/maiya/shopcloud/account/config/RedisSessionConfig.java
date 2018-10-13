@@ -17,13 +17,4 @@ import org.springframework.session.web.http.DefaultCookieSerializer;
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 600)
 public class RedisSessionConfig {
 
-    @Bean
-    public DefaultCookieSerializer defaultCookieSerializer(){
-        DefaultCookieSerializer defaultCookieSerializer = new DefaultCookieSerializer();
-        defaultCookieSerializer.setUseHttpOnlyCookie(false);
-        defaultCookieSerializer.setDomainName("localhost:8081");
-        defaultCookieSerializer().setCookiePath("/");
-        return defaultCookieSerializer;
-    }
-
 }

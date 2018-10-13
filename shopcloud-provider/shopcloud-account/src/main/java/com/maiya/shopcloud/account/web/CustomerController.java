@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * 用户服务
  */
-@CrossOrigin(origins = {"http://localhost:8080"}, allowCredentials = "true")
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/account", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Api(value = "Web - CustomerController", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -83,10 +84,9 @@ public class CustomerController {
      * 注册
      * @return
      */
-    @GetMapping(value = "/register")
+    @PostMapping(value = "/register")
     @ApiOperation(httpMethod = "POST", value = "注册")
-    public void login(HttpServletRequest request, HttpServletResponse response) {
-
-
+    public void login(CustomerDO customerDO, HttpServletRequest request, HttpServletResponse response) {
+        customerService.selectAll();
     }
 }

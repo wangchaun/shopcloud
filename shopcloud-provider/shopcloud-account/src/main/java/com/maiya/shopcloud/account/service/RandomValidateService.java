@@ -104,7 +104,7 @@ public class RandomValidateService {
         String rs = (String)session.getAttribute(RANDOMCODEKEY);
         logger.info("key : {}, RANDOMCODEKEY: {}", key , rs);
         boolean flag = false;
-        if(rs != null && rs != "" && rs.equals(key)){
+        if(rs != null && rs != "" && rs.toUpperCase().equals(key.toUpperCase())){
             flag = true;
         }
         try {
