@@ -10,4 +10,6 @@ public interface CustomerService extends IService<CustomerDO> {
 
     void registerCustomer(CustomerDO customerDO, HttpServletRequest request, HttpServletResponse response);
 
+    void login(CustomerDO customerDO, HttpServletRequest request, HttpServletResponse response);
+
 }

@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -86,7 +85,16 @@ public class CustomerController {
      */
     @PostMapping(value = "/register")
     @ApiOperation(httpMethod = "POST", value = "注册")
+    public void register(CustomerDO customerDO, HttpServletRequest request, HttpServletResponse response) {
+        customerService.registerCustomer(customerDO, request, response);
+    }
+    /**
+     * 登陆
+     * @return
+     */
+    @PostMapping(value = "/login")
+    @ApiOperation(httpMethod = "POST", value = "登陆")
     public void login(CustomerDO customerDO, HttpServletRequest request, HttpServletResponse response) {
-        customerService.selectAll();
+        customerService.login(customerDO, request, response);
     }
 }
